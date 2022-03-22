@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mentor Page</title>
+    <meta charset="utf-8">
+    <link href="Mentor_Page.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="centerPage">
+
+        <!-- Using a placeholder for now -->
+        <h1>Welcome Back {username}</h1><br><br><br>
+
+        <div class="mentorPage">
+
+            <!-- Div for the pending requests section; contains a table, values are hardcoded for now -->
+            <div id="pendingRequests">
+                <h3><u>Pending Mentee Requests</u></h3>
+                <table>
+                    <tr>
+                        <td>Bart Simpson</td>
+                        <td><button>Accept</button></td>
+                        <td><button>Deny</button></td>
+                    </tr>
+                    <tr>
+                        <td>Hank Hill</td>
+                        <td><button>Accept</button></td>
+                        <td><button>Deny</button></td>
+                    </tr>
+                </table>
+            </div><br><br>
+        
+            <!-- Div for the current mentees section; contains a table, values are hardcoded for now. Values in this table should reflect based on 
+            which mentor is logged in and how many mentees he has under him -->
+            <div id="myMentees">
+                <h3><u>My Mentees</u></h3>
+                <table>
+                    <tr>
+                        <td>Bilbo Baggins</td>
+                    </tr>
+                </table>
+            </div><br><br><br>
+        
+            <!-- Update Profile button -->
+            <input type="submit" id="updateProfile" value="Update Profile">
+        </div>
+    </div>
+</body>

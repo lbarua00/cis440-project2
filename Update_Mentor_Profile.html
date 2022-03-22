@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Update Mentor Profile</title>
+    <meta charset="utf-8">
+    <link href="Update_Mentor_Profile.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="centerPage">
+
+        <div class="updateMentorProfile">
+
+            <!-- This will display the Mentor's Name. Using sample for now -->
+            <h1>Bart Simpson</h1>
+
+            <h3><u>Desired Skills</u></h3>
+
+
+            <!-- Putting everything in a FORM tag since this will be constantly updating. Using generic action page for now -->
+            <form action="/action_page.php">
+                <!-- Table for Skills, still unsure about how many skills there will be in total -->
+                <div id="skillsTable">
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="skill1">
+                            </td>
+                            <td>Skill 1</td>
+                            <td>
+                                <input type="checkbox" id="skill2">
+                            </td>
+                            <td>Skill 2</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="skill3">
+                            </td>
+                            <td>Skill 3</td>
+                            <td>
+                                <input type="checkbox" id="skill4">
+                            </td>
+                            <td>Skill 4</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="skill5">
+                            </td>
+                            <td>Skill 5</td>
+                            <td>
+                                <input type="checkbox" id="skill6">
+                            </td>
+                            <td>Skill 6</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="skill7">
+                            </td>
+                            <td>Skill 7</td>
+                            <td>
+                                <input type="checkbox" id="skill8">
+                            </td>
+                            <td>Skill 8</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="skill9">
+                            </td>
+                            <td>Skill 9</td>
+                            <td>
+                                <input type="checkbox" id="skill10">
+                            </td>
+                            <td>Skill 10</td>
+                        </tr>
+                    </table>
+                </div><br>
+
+                <!-- Label for location -->
+                <label for="location">Location: </label>
+                <input type="text" id="location"><br><br>
+
+                <!-- Lable for years of expereience -->
+                <label for="yearsOfExperience">Years of Experience: </label>
+                <input type="number" min="0" max="100" id="yearsOfExperience">
+
+                <!-- Header for Bio -->
+                <h3><u>Bio</u></h3>
+                <!-- Text box; need to be able to make it like a box -->
+                <textarea id="bio" name="bio" rows="10" cols="50"></textarea><br><br>
+
+                <div class="saveContainer">
+                    <!-- Probably need FORM tag here to save action and redirect to mentee homepage -->
+                    <input type="submit" id="saveProfile" value="Save Profile">
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</body>
