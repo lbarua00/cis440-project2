@@ -10,14 +10,17 @@
     <div class="centerpage">
         <div class="createAccount">
            <h1>Create Account</h1>
-           <form method="POST" action="action-page.php">
-               
-                <!--Create Account-->
-                <!-- This leads you to a create account page for mentors -->
-               <button type="mentor" name="mentor" id="mentor"><a href="Create_Account_Part2.html" target="_blank">Mentor</a></button><br><br>
-
-                <!-- This leads you to a create account page for mentors -->
-               <button type="mentee" name="mentee" id="mentee"><a href="Create_Account_Part2.html" target="_blank">Mentee</a></button><br><br>
+           <form method="POST" action="/create_account">
+               <!--Create Account-->
+               <label>E-mail</label>
+               <input type="email" name="email" id="email"><br><br>
+               <label>Password</label>
+               <input type="password" name="password" id="password"><br><br>
+               <label>First Name</label>
+               <input type="firstName" name="firstName" id="firstName"><br><br>
+               <label>Last Name</label>
+               <input type="lastName" name="lastName" id="lastName"><br>
+               <button type="create" name="create" id="create">Create Account</button>
             </form>
         </div> 
     </div>

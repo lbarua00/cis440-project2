@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+</html>
+<head>
+    <meta charset="utf-8">
+    <link href="Account_Type.css" rel="stylesheet">
+</head>
+<body>
+    <div class="centerpage">
+        <div class="createAccount">
+           <h1>Account Type</h1>
+           <form method="POST" action="/account_type">
+
+            <!-- radio buttons to select account type -->
+            <input type="radio" id="mentorRad" name="account_type" value="mentor">
+            <label for="mentorRad">Mentor</label>
+            <input type="radio" id="menteeRad" name="account_type" value="mentee">
+            <label for="menteeRad">Mentee</label>
+
+            <br>
+
+            <button type="submit">Create Account</button>
+                <!--Create Account-->
+                <!-- This leads you to a create account page for mentors -->
+               <!-- <button type="submit" name="mentor" id="mentor" value="mentor">Mentor</button><br><br> -->
+
+                <!-- This leads you to a create account page for mentors -->
+               <!-- <button type="submit" name="mentee" id="mentee" value="mentee">Mentee</button><br><br> -->
+            </form>
+        </div> 
+    </div>
+</body>
