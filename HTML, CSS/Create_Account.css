@@ -1,0 +1,43 @@
+body {
+    margin: 0px;
+    padding: 0;
+    background: linear-gradient(#FFEFD5, #87CEEB) no-repeat;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    orientation: top;
+}
+
+#mentor, #mentee {
+    padding: 15px 32%;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 5px;
+}
+
+.centerpage {
+    height: 100vh;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.createAccount {
+    overflow: hidden;
+    padding: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: 3px 12px 28px -3px rgba(0,0,0,0.45);
+}
+
+.txt {
+    text-align: center;
+}
