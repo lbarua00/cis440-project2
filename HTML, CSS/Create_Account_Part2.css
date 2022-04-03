@@ -1,4 +1,5 @@
 body {
+    overflow: hidden;
     margin: 0px;
     padding: 0;
     background: linear-gradient(#FFEFD5, #87CEEB) no-repeat;
@@ -32,6 +33,7 @@ h1 {
 
 .createAccount {
     overflow: hidden;
+    width: 60%;
     padding: 50px;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;

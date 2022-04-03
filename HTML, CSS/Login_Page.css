@@ -89,6 +89,7 @@ input[type="submit"]:hover {
 /* Style for a white background to fit content in the .centerPage div */
 .loginPage {
   overflow: hidden;
+  width: 60%;
   padding: 50px;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
