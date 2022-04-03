@@ -1,26 +1,26 @@
 {
-  "name": "cis440-project2",
+  "name": "nodejs-passport-login-master",
   "version": "1.0.0",
   "description": "",
-  "main": "routes.js",
+  "main": "passport-config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lbarua00/cis440-project2.git"
+    "devStart": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lbarua00/cis440-project2/issues"
-  },
-  "homepage": "https://github.com/lbarua00/cis440-project2#readme",
   "dependencies": {
-    "body-parser": "^1.19.2",
-    "cors": "^2.8.5",
+    "bcrypt": "^5.0.1",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
-    "mysql": "^2.18.1"
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.2",
+    "method-override": "^3.0.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15"
   }
 }
