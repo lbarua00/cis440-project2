@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const passport = require('passport')
 var mysql = require('mysql');
@@ -41,10 +42,11 @@ app.use(express.urlencoded({ extended: true }))
 
 
 
+
 // Will need to add functionaility to handle if mentor or mentee redirect to respetive page
 app.get('/', checkAuthenticated, (req, res) => {
-  // res.render('Mentor_Page.ejs', { name: req.user.Fname }) // for mentor commented out for now to test mentee
-  res.render('Mentee_Page.ejs') // for mentor
+  res.render('Mentor_Page.ejs', { name: req.user.Fname }) // for mentor commented out for now to test mentee
+  // res.render('Mentee_Page.ejs') // for mentor
 })
 
 /* Create_Account */
@@ -63,7 +65,8 @@ app.post('/Create_Account', checkNotAuthenticated, async (req, res) => {
       console.log(rows)
     })
     }  else {
-      connection.query(`INSERT INTO M_Mentee (Fname, Lname, Email, State, Password, Position, Bio) VALUES ('${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n')`, function(err, rows) {
+      connection.query(`INSERT INTO M_Mentee (Fname, Lname, Email, State, Password, Position, Bio) VALUES ('${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n')`, 
+      function(err, rows) {
         console.log(rows)
       })
     } 
@@ -102,7 +105,37 @@ app.post("/update_mentor", function(req, res) {
   console.log("mentor profile updated.")
 
   // add code to query db and save new input data
+  let user = req.session.passport.user
+  let newlocation   = req.body.location;
+  let newyears      = req.body.yearsOfExperience
+  let newbio        = req.body.Bio
+  let skill1  = Boolean(req.body.skill1);
+  let skill2  = Boolean(req.body.skill2);
+  let skill3  = Boolean(req.body.skill3);
+  let skill4  = Boolean(req.body.skill4);
+  let skill5  = Boolean(req.body.skill5);
+  let skill6  = Boolean(req.body.skill6);
 
+  const skills  = ['SQL','Python','Tableau','JavaScript','HTML','CSS']
+  const skillsChecked = [skill1, skill2, skill3, skill4, skill5, skill6]
+
+  console.log(`${user}, ${newyears}, ${newlocation}, ${newbio}, ${skillsChecked}`)
+
+  connection.query(`UPDATE M_Mentor 
+                      SET State = '${newlocation}', Bio = '${newbio}'
+                        WHERE MentorId = ${user}`, function(err, rows) {
+                          console.log(rows)
+                        })
+
+  for (let i = 0; i<skills.length; i++) {
+    if (skillsChecked[i] === 'true') {
+      console.log(skills[i])
+      connection.query(`INSERT INTO M_HaveSkill
+                        VALUES ${user}, '${skills[i]}'`, function(err, rows) {
+                          console.log(rows)
+                        })
+    }
+  }
   // redirect back to mentor home page
   res.redirect('/mentor_page')
 })
@@ -130,6 +163,32 @@ app.post("/update_mentee", function(req, res) {
   console.log("mentee profile updated.")
 
   // add code to query db and save new input data
+  let user = req.session.passport.user
+  let newlocation   = req.body.location;
+  let newyears      = req.body.yearsOfExperience
+  let newbio        = req.body.Bio
+  let skill1  = Boolean(req.body.skill1);
+  let skill2  = Boolean(req.body.skill2);
+  let skill3  = Boolean(req.body.skill3);
+  let skill4  = Boolean(req.body.skill4);
+  let skill5  = Boolean(req.body.skill5);
+  let skill6  = Boolean(req.body.skill6);
+
+  const skills  = ['SQL','Python','Tableau','JavaScript','HTML','CSS']
+  const skillsChecked = [skill1, skill2, skill3, skill4, skill5, skill6]
+
+  console.log(`${user}, ${newyears}, ${newbio}, ${skillsChecked}`)
+
+  connection.query(`UPDATE M_Mentee 
+                      SET State = ${newlocation}, Bio = ${newbio}
+                        WHERE MenteeId = ${user}`)
+
+  for (let i = 0; i<skills.length; i++) {
+    if (skillsChecked[i] = 'on') {
+      connection.query(`INSERT INTO M_Desired_Skill
+                        VALUES ${user}, ${skills[i]}`)
+    }
+  }
 
   // redirect back to mentee home page
   res.redirect('/mentee_page')
