@@ -2,45 +2,41 @@
 <html lang="en">
 
 <head>
-    <!-- Example Title of the App -->
-    <title>Fellowship Of Mentors</title>
-    <meta charset="utf-8">
-    <link href="Login_Page.css" rel="stylesheet">
+  <!-- Example Title of the App -->
+  <title>Fellowship Of Mentors</title>
+  <meta charset="utf-8">
+  <link href="Login_Page.css" rel="stylesheet">
 
+    
 </head>
 
 <body>
+  <div class="centerPage">
 
-    <!--Login Page-->
-
-    <div class="centerPage">
-
-        <div class="loginPage">
-            <h1>Welcome to Fellowship Of Mentors</h1><br>
-            <h2><u>Login</u></h2>
-
-            <form id="login" method="POST" action="/login">
-
-                <!--Email container-->
-                <label>Email: </label>
-                <input type="text" name="email" id="email" required><br><br>
-
-                <!--Password container-->
-                <label>Password: </label>
-                <input type="password" name="password" id="password" required><br><br>
-
-                <!--Login button-->
-                <input type="submit" name="log" id="log" value="Login"><br><br>
-
-                <!-- Takes you to the create account page -->
-                <a href="/Account_Type">Create Account</a><br><br>
-
-            </form>
-        </div>
+    <div class="loginPage">
+      
+      <h1>Welcome to Fellowship Of Mentors</h1><br>
+      <h2><u>Login</u></h2>
+      
+      <% if (messages.error) { %>
+        <%= messages.error %>
+        <% } %>
+        <form action="/Login_Page" method="POST">
+            <!--Email container-->
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email" required><br><br>
+            <!-- <label for="email">Email</label>
+            <input type="email" id="email" name="email" required> -->
+          
+          
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          
+          <button type="submit">Login</button>
+          <!-- Go to Create Account -->
+          <a href="/Create_Account">Register</a>
+        </form>
+      </div>
     </div>
-
-    </div>
-
-</body>
-
-</html>
+  </body>
+  </html>

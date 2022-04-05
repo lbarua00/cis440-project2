@@ -5,6 +5,65 @@
     <title>Update Mentor Profile</title>
     <meta charset="utf-8">
     <link href="Update_Mentor_Profile.css" rel="stylesheet">
+    <style>
+        body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#ffefd5, #87ceeb) no-repeat;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.centerPage {
+  height: 100vh;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.updateMentorProfile {
+  overflow: hidden;
+  width: 60%;
+  height: fit-content;
+  padding: 10px 50px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  box-shadow: 3px 12px 28px -3px rgba(0, 0, 0, 0.45);
+}
+
+table {
+  border: 1px solid black;
+  padding: 10px;
+  margin: auto;
+  width: 100%
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Style for the buttons */
+input[type="submit"] {
+  padding: 15px;
+  margin: auto;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: #87CEEB;
+}
+
+input[type="submit"]:hover {
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
+}
+
+#bio {
+  width: 100%;
+}
+
+    </style>
 </head>
 
 <body>
@@ -18,38 +77,38 @@
             <h3><u>Desired Skills</u></h3>
 
 
-            <!-- Putting everything in a FORM tag since this will be constantly updating.-->
-            <form method="POST" action="/update_mentor">
+            <!-- Putting everything in a FORM tag since this will be constantly updating. Using generic action page for now -->
+            <form action="/update_mentor" method="POST">
                 <!-- Table for Skills, still unsure about how many skills there will be in total -->
                 <div id="skillsTable">
                     <table>
                         <tr>
                             <td>
-                                <input type="checkbox" id="skill1">
+                                <input type="checkbox" id="skill1" name="skill1" value="skill1">
                             </td>
                             <td>Skill 1</td>
                             <td>
-                                <input type="checkbox" id="skill2">
+                                <input type="checkbox" id="skill2" name="skill2" value="skill2">
                             </td>
                             <td>Skill 2</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="checkbox" id="skill3">
+                                <input type="checkbox" id="skill3" name="skill3" value="skill3">
                             </td>
                             <td>Skill 3</td>
                             <td>
-                                <input type="checkbox" id="skill4">
+                                <input type="checkbox" id="skill4" name="skill4" value="skill4">
                             </td>
                             <td>Skill 4</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="checkbox" id="skill5">
+                                <input type="checkbox" id="skill5" name="skill5" value="skill5">
                             </td>
                             <td>Skill 5</td>
                             <td>
-                                <input type="checkbox" id="skill6">
+                                <input type="checkbox" id="skill6" name="skill6" value="skill6">
                             </td>
                             <td>Skill 6</td>
                         </tr>
@@ -78,11 +137,11 @@
 
                 <!-- Label for location -->
                 <label for="location">Location: </label>
-                <input type="text" id="location"><br><br>
+                <input type="text" id="location" name="location"><br><br>
 
                 <!-- Lable for years of expereience -->
                 <label for="yearsOfExperience">Years of Experience: </label>
-                <input type="number" min="0" max="100" id="yearsOfExperience">
+                <input type="number" min="0" max="100" id="yearsOfExperience" name="yearsOfExperience">
 
                 <!-- Header for Bio -->
                 <h3><u>Bio</u></h3>
