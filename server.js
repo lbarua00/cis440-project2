@@ -108,7 +108,8 @@ app.post("/update_mentor", function(req, res) {
   let user = req.session.passport.user
   let newlocation   = req.body.location;
   let newyears      = req.body.yearsOfExperience
-  let newbio        = req.body.Bio
+  let newbio        = req.body.bio
+  
   let skill1  = Boolean(req.body.skill1);
   let skill2  = Boolean(req.body.skill2);
   let skill3  = Boolean(req.body.skill3);
@@ -126,6 +127,8 @@ app.post("/update_mentor", function(req, res) {
                         WHERE MentorId = ${user}`, function(err, rows) {
                           console.log(rows)
                         })
+
+                       
 
   for (let i = 0; i<skills.length; i++) {
     if (skillsChecked[i] === 'true') {
