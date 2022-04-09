@@ -56,16 +56,18 @@ app.get('/Create_Account', checkNotAuthenticated, (req, res) => {
 
 app.post('/Create_Account', checkNotAuthenticated, async (req, res) => {
   try {
+    let makedID = generateId()
+    console.log(makedID);
     console.log("req.body", req.body)
     // Comment out for now to hard code 'n' for a few inputs due to Create_Account issues
     // connection.query(`INSERT INTO M_Mentor (Fname, Lname, Email, State, Password, Position, Bio) VALUES ('${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', '${req.body.State}', '${req.body.Password}', '${req.body.Position}', '${req.body.Bio}')`, function(err, rows) {
       // console.log('query: ',`INSERT INTO M_Mentee (Fname, Lname, Email, State, Password, Position, Bio) VALUES ('${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n')`);
     if (req.body.account_type === 'mentor') {      
-      connection.query(`INSERT INTO M_Mentor (Fname, Lname, Email, State, Password, Position, Bio) VALUES ('${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n')`, function(err, rows) {
-      console.log(rows)
+      connection.query(`INSERT INTO M_Mentor (MentorID, Fname, Lname, Email, State, Password, Position, Bio, IsMentor) VALUES (${makedID},'${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n', 0)`, function(err, rows) {
+        console.log(rows)
     })
     }  else {
-      connection.query(`INSERT INTO M_Mentee (Fname, Lname, Email, State, Password, Position, Bio) VALUES ('${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n')`, 
+      connection.query(`INSERT INTO M_Mentee (MenteeID, Fname, Lname, Email, State, Password, Position, Bio, IsMentor) VALUES (${makedID},'${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n', 1)`, 
       function(err, rows) {
         console.log(rows)
       })
@@ -140,7 +142,7 @@ app.post("/update_mentor", function(req, res) {
     }
   }
   // redirect back to mentor home page
-  res.redirect('/mentor_page')
+  res.redirect('/')
 })
 
 // GET MENTEE PAGE
@@ -223,6 +225,11 @@ function checkNotAuthenticated(req, res, next) {
     return res.redirect('/')
   }
   next()
+}
+
+function generateId() {
+  let d = new Date().getTime().toString().substring(6,15);
+  return parseInt(d)
 }
 
 console.log("Listening on Port 8080");
