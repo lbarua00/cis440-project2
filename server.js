@@ -130,6 +130,10 @@ app.post("/update_mentor", function(req, res) {
 
   console.log(`${user}, ${newyears}, ${newlocation}, ${newbio}, ${skillsChecked}`)
 
+  // NEED TO ADD IF CHECK BASED ON IF USER IS MENTOR. USE req.user.IsMentor 
+  // 0 MEANS MENTOR
+  // 1 MEANS MENTEE
+
   connection.query(`UPDATE M_Mentor 
                       SET State = '${newlocation}', Bio = '${newbio}'
                         WHERE MentorId = ${user}`, function(err, rows) {
