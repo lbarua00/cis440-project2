@@ -45,7 +45,13 @@ app.use(express.urlencoded({ extended: true }))
 
 // Will need to add functionaility to handle if mentor or mentee redirect to respetive page
 app.get('/', checkAuthenticated, (req, res) => {
-  res.render('Mentor_Page.ejs', { name: req.user.Fname }) // for mentor commented out for now to test mentee
+  let IsMentor = req.user.IsMentor
+  console.log('Check Mentor Type ',IsMentor);
+  if (IsMentor === 0) {
+    res.render('Mentor_Page.ejs', { name: req.user.Fname }) // for mentor commented out for now to test mentee
+  } else {
+    res.render('Mentee_Page.ejs', { name: req.user.Fname }) // for mentor commented out for now to test mentee
+  }
   // res.render('Mentee_Page.ejs') // for mentor
 })
 
