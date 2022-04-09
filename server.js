@@ -84,18 +84,18 @@ app.post('/Create_Account', checkNotAuthenticated, async (req, res) => {
   }
 })
 
-/* Login */
+// GET LOGIN
 app.get('/Login_Page', checkNotAuthenticated, (req, res) => {
   res.render('Login_Page.ejs')
 })
-
+// POST LOGIN
 app.post('/Login_Page', checkNotAuthenticated, passport.authenticate('local', {
   successRedirect: '/',  
   failureRedirect: '/Login_Page',
   failureFlash: true
 }))
 
-/* Logout */
+// LOGOUT 
 app.delete('/logout', (req, res) => {
   req.logOut()
   res.redirect('/Login_Page')
@@ -219,10 +219,20 @@ app.get("/find_mentors", function(req, res) {
   // add code to filter results
 })
 
+// GET MENTEE PROFILE
+app.get("/mentee_profile", function(req, res) {
+  console.log("Mentee_Profile page loaded.")
+  res.render("Mentee_Profile.ejs")
+})
+
+// POST MENTEE PROFILE
+app.post("/mentee_profile", function(req, res) {
 
 
-/* Dunno */
-// Possiblly, 'req.isAuthenticated()' is '(user, done) => done(null, user.MentorID)'
+})
+
+
+// PASSPORT FUNCTIONS
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
@@ -241,6 +251,7 @@ function generateId() {
   let d = new Date().getTime().toString().substring(6,15);
   return parseInt(d)
 }
+
 
 console.log("Listening on Port 8080");
 app.listen(8080)
