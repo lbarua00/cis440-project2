@@ -239,8 +239,15 @@ app.get("/find_mentors", function(req, res) {
 // GET MENTEE PROFILE
 app.get("/mentee_profile", function(req, res) {
   console.log("Mentee_Profile page loaded.")
-  res.render("Mentee_Profile.ejs")
-})
+
+  currentUser = req.session.passport.user
+
+  connection.query(`
+  SELECT * FROM M_Mentee
+  where MenteeID = ${currentUser}`, function(err, rows) {
+  res.render('Mentee_Profile.ejs', { fname: req.user.Fname, lname: req.user.Lname, location: req.user.State, bio: req.user.Bio }
+  )})
+
 
 // POST MENTEE PROFILE
 app.post("/mentee_profile", function(req, res) {
