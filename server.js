@@ -39,18 +39,35 @@ app.use(methodOverride('_method'))
 app.use(express.static("css"))
 app.use(express.urlencoded({ extended: true }))
 
+/* 
+IGNORE FOR NOW
+SET FOREIGN_KEY_CHECKS=0
+SET FOREIGN_KEY_CHECKS=1
+*/
 
-
-
+// MIGUELS NOTES ADDED QUERY TO GET MENTEE ID FOR WHEN LOADING MENTOR PAGE NEED TO NOW 
+// GET MENTEE DATA WITH THAT ID. LOOK INTO JOINS
 
 // Will need to add functionaility to handle if mentor or mentee redirect to respetive page
 app.get('/', checkAuthenticated, (req, res) => {
   let IsMentor = req.user.IsMentor
+  let MentorID = req.user.MentorID
   console.log('Check Mentor Type ',IsMentor);
   if (IsMentor === 0) {
-    res.render('Mentor_Page.ejs', { name: req.user.Fname }) // for mentor commented out for now to test mentee
+    // connection.query(`SELECT * FROM M_Mentorship WHERE MenteeID = ${MentorID}`, function(err, rows) {
+     connection.query(`
+     SELECT * FROM M_Mentee 
+     where MenteeId = ( 
+        SELECT MenteeID 
+          FROM M_Mentorship 
+          WHERE MentorID =  ${MentorID}
+          and Accepted = 1)
+     `, function(err, rows) {
+      res.render('Mentor_Page.ejs', { name: req.user.Fname, mentee_data: rows }) // pass Mentor and Mentee info to the mentor page
+      console.log('Mentorships table data:', rows)
+      })
   } else {
-    res.render('Mentee_Page.ejs', { name: req.user.Fname }) // for mentor commented out for now to test mentee
+    res.render('Mentee_Page.ejs', { name: req.user.Fname }) 
   }
   // res.render('Mentee_Page.ejs') // for mentor
 })

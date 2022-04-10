@@ -38,9 +38,7 @@
       <div id="myMentees">
         <h3><u>My Mentees</u></h3>
         <table>
-            <tr>
-                <td>Bilbo Baggins</td>
-                <td><a href="/mentee_profile">Mentee1</a></td>
+            <tr id="menteeRow">
             </tr>
         </table>
     </div><br><br><br>
@@ -57,5 +55,19 @@
     </div>
   </div>
 
+  <script>
+    let menteeTable = document.getElementById('menteeRow')
+    let menteeData = '<%- JSON.stringify(mentee_data)%>';
+    menteeData = JSON.parse(menteeData)
+
+    // Populate Mentors current Mentees in "My Mentees"
+    if (menteeData.length != 0) {
+        menteeData.forEach(mentee => {
+        menteeTable.innerHTML += `<td><a href="/mentee_profile">${mentee.Fname}</a></td>`
+      });
+    } else {
+      menteeTable.innerHTML += `<td>You don't have any Mentees.</td>`
+    }
+    </script>
 </body>
 </html>
