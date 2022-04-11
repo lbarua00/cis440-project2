@@ -17,6 +17,10 @@
 
             <!-- This will display the Mentor's location. Unsure if hardcoding -->
             <p><%= state %></p><br>
+            <!-- <h1><%=fname%> <%=lname%></h1> -->
+
+            <!-- This will display the Mentor's location. Unsure if hardcoding -->
+            <p><%=location%></p><br>
 
             <h3><u>Skills</u></h3>
             
@@ -40,6 +44,7 @@
             <h3><u>Bio</u></h3>
             <!-- Text box; need to be able to make it like a box -->
             <textarea id="bio" name="bio" rows="10" cols="50"><%= bio %></textarea><br><br>
+            <textarea id="bio" name="bio" rows="10" cols="50"><%=bio%></textarea><br><br>
 
             <!-- This should take you to the Review page -->
             <a href="Review_Page.html" target="_blank"><input type="submit" id="leaveReview" value="Leave Review"></a><br><br>
