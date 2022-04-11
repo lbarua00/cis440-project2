@@ -256,6 +256,15 @@ app.get("/mentee_profile/:id", function(req, res) {
     })
   })
 })
+/* Stephens code
+  currentUser = req.session.passport.user
+
+  connection.query(`
+  SELECT * FROM M_Mentee
+  where MenteeID = ${currentUser}`, function(err, rows) {
+  res.render('Mentee_Profile.ejs', { fname: req.user.Fname, lname: req.user.Lname, location: req.user.State, bio: req.user.Bio }
+  )})
+*/
 
 // POST MENTEE PROFILE
 app.post("/mentee_profile", function(req, res) {
