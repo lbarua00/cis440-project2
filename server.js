@@ -47,10 +47,6 @@ SET FOREIGN_KEY_CHECKS=0
 SET FOREIGN_KEY_CHECKS=1
 */
 
-// MIGUELS NOTES ADDED QUERY TO GET MENTEE ID FOR WHEN LOADING MENTOR PAGE NEED TO NOW 
-// GET MENTEE DATA WITH THAT ID. LOOK INTO JOINS
-
-// Will need to add functionaility to handle if mentor or mentee redirect to respetive page
 app.get('/', checkAuthenticated, (req, res) => {
   let IsMentor = req.user.IsMentor
   let MentorID = req.user.MentorID
@@ -59,7 +55,7 @@ app.get('/', checkAuthenticated, (req, res) => {
     // connection.query(`SELECT * FROM M_Mentorship WHERE MenteeID = ${MentorID}`, function(err, rows) {
      connection.query(`
      SELECT * FROM M_Mentee 
-     where MenteeId = ( 
+     where MenteeId in ( 
         SELECT MenteeID 
           FROM M_Mentorship 
           WHERE MentorID =  ${MentorID}
@@ -71,7 +67,7 @@ app.get('/', checkAuthenticated, (req, res) => {
   } else {
     res.render('Mentee_Page.ejs', { name: req.user.Fname }) 
   }
-  // res.render('Mentee_Page.ejs') // for mentor
+
 })
 
 /* Create_Account */
@@ -256,7 +252,8 @@ app.get("/mentee_profile/:id", function(req, res) {
     })
   })
 })
-/* Stephens code
+/*
+  Stephens code
   currentUser = req.session.passport.user
 
   connection.query(`

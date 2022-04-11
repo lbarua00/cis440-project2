@@ -61,7 +61,7 @@
     menteeData = JSON.parse(menteeData)
 
     // Populate Mentors current Mentees in "My Mentees"
-    if (menteeData.length != 0) {
+    if (menteeData.length != 0) { // if not mentee array not empty
         menteeData.forEach(mentee => {
         menteeTable.innerHTML += `<td><a href="/mentee_profile/${mentee.MenteeId}">${mentee.Fname}</a></td>`
       });
