@@ -63,7 +63,7 @@
     // Populate Mentors current Mentees in "My Mentees"
     if (menteeData.length != 0) {
         menteeData.forEach(mentee => {
-        menteeTable.innerHTML += `<td><a href="/mentee_profile">${mentee.Fname}</a></td>`
+        menteeTable.innerHTML += `<td><a href="/mentee_profile/${mentee.MenteeId}">${mentee.Fname}</a></td>`
       });
     } else {
       menteeTable.innerHTML += `<td>You don't have any Mentees.</td>`

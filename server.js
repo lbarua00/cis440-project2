@@ -39,6 +39,8 @@ app.use(methodOverride('_method'))
 app.use(express.static("css"))
 app.use(express.urlencoded({ extended: true }))
 
+
+
 /* 
 IGNORE FOR NOW
 SET FOREIGN_KEY_CHECKS=0
@@ -237,9 +239,22 @@ app.get("/find_mentors", function(req, res) {
 })
 
 // GET MENTEE PROFILE
-app.get("/mentee_profile", function(req, res) {
+app.get("/mentee_profile/:id", function(req, res) {
+  let menteeid = req.params.id
+
   console.log("Mentee_Profile page loaded.")
-  res.render("Mentee_Profile.ejs")
+  console.log("Request Id from url:", menteeid );
+
+  connection.query(`SELECT * FROM sprog20223.M_Mentee where MenteeId = ${menteeid}`, 
+  function(err, rows) 
+  {console.log(rows)
+    res.render("Mentee_Profile.ejs",
+    { firstName: rows[0].Fname,
+      lastName:  rows[0].Lname,
+      state:     rows[0].State,
+      bio:       rows[0].Bio 
+    })
+  })
 })
 
 // POST MENTEE PROFILE
