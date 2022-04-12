@@ -158,12 +158,10 @@ app.post("/update_mentor", function(req, res) {
                        
 
   for (let i = 0; i<skills.length; i++) {
-    if (skillsChecked[i] === 'true') {
+    if (skillsChecked[i] === true) {
       console.log(skills[i])
       connection.query(`INSERT INTO M_HaveSkill
-                        VALUES ${user}, '${skills[i]}'`, function(err, rows) {
-                          console.log(rows)
-                        })
+                        VALUES ${user}, '${skills[i]}'`, function(err, rows) {   })
     }
   }
   // redirect back to mentor home page
@@ -214,9 +212,10 @@ app.post("/update_mentee", function(req, res) {
                         WHERE MenteeId = ${user}`)
 
   for (let i = 0; i<skills.length; i++) {
-    if (skillsChecked[i] = 'on') {
+    if (skillsChecked[i] === True) {
       connection.query(`INSERT INTO M_Desired_Skill
                         VALUES ${user}, ${skills[i]}`)
+      console.log(skillsChecked[i])
     }
   }
 
