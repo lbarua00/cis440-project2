@@ -19,8 +19,8 @@
       <!-- Div for the pending requests section; contains a table, values are hardcoded for now -->
       <div id="pendingRequests">
         <h3><u>Pending Mentee Requests</u></h3>
-        <table>
-            <tr>
+        <table id="menteeRequests">
+            <!-- <tr>
                 <td>Bart Simpson</td>
                 <td><button>Accept</button></td>
                 <td><button>Deny</button></td>
@@ -29,7 +29,7 @@
                 <td>Hank Hill</td>
                 <td><button>Accept</button></td>
                 <td><button>Deny</button></td>
-            </tr>
+            </tr> -->
         </table>
       </div><br><br>
       
@@ -56,17 +56,31 @@
   </div>
 
   <script>
-    let menteeTable = document.getElementById('menteeRow')
+    let menteeRow = document.getElementById('menteeRow')
+    let menteeRequests = document.getElementById('menteeRequests')
     let menteeData = '<%- JSON.stringify(mentee_data)%>';
     menteeData = JSON.parse(menteeData)
-
+    console.log(menteeData);
     // Populate Mentors current Mentees in "My Mentees"
     if (menteeData.length != 0) { // if not mentee array not empty
+
         menteeData.forEach(mentee => {
-        menteeTable.innerHTML += `<td><a href="/mentee_profile/${mentee.MenteeId}">${mentee.Fname}</a></td>`
-      });
+        if (mentee.Accepted === 1) { // check if the mentee is a current mentee
+          menteeRow.innerHTML += `<td><a href="/mentee_profile/${mentee.MenteeId}">${mentee.Fname}</a></td>`
+        }  else if (mentee.Accepted == 0){ // check of mentee is pending if so populate page
+          menteeRequests.innerHTML += `
+          <tr>
+                <td><a href="/mentee_profile/${mentee.MenteeId}"> ${mentee.Fname} ${mentee.Lname}</a> </td>
+                <td><button>Accept</button></td>
+                <td><button>Deny</button></td>
+            </tr>
+          `
+        }
+      })
+      
     } else {
-      menteeTable.innerHTML += `<td>You don't have any Mentees.</td>`
+      menteeRow.innerHTML += `<td>You don't have any Mentees.</td>`
+      menteeRequests.innerHTML += `<td>You don't have any Pending Mentee Requests.</td>`
     }
     </script>
 </body>

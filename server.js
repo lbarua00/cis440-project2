@@ -53,14 +53,23 @@ app.get('/', checkAuthenticated, (req, res) => {
   console.log('Check Mentor Type ',IsMentor);
   if (IsMentor === 0) {
     // connection.query(`SELECT * FROM M_Mentorship WHERE MenteeID = ${MentorID}`, function(err, rows) {
-     connection.query(`
-     SELECT * FROM M_Mentee 
-     where MenteeId in ( 
-        SELECT MenteeID 
-          FROM M_Mentorship 
-          WHERE MentorID =  ${MentorID}
-          and Accepted = 1)
-     `, function(err, rows) {
+     connection.query
+     (`
+     SELECT * FROM M_Mentee m join M_Mentorship m_ship
+		  on m.MenteeID = m_ship.MenteeID
+        where m.MenteeId in ( 
+	   SELECT MenteeID 
+		  FROM M_Mentorship 
+		  WHERE MentorID = ${MentorID}
+		)
+     `, 
+    //  (`SELECT * FROM M_Mentee 
+    //     where MenteeId in ( 
+    //         SELECT MenteeID 
+    //           FROM M_Mentorship 
+    //           WHERE MentorID =  ${MentorID}
+    //           )`, 
+     function(err, rows) {
       res.render('Mentor_Page.ejs', { name: req.user.Fname, mentee_data: rows }) // pass Mentor and Mentee info to the mentor page
       console.log('Mentorships table data:', rows)
       })
@@ -85,12 +94,12 @@ app.post('/Create_Account', checkNotAuthenticated, async (req, res) => {
       // console.log('query: ',`INSERT INTO M_Mentee (Fname, Lname, Email, State, Password, Position, Bio) VALUES ('${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n')`);
     if (req.body.account_type === 'mentor') {      
       connection.query(`INSERT INTO M_Mentor (MentorID, Fname, Lname, Email, State, Password, Position, Bio, IsMentor) VALUES (${makedID},'${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n', 0)`, function(err, rows) {
-        console.log(rows)
+        // console.log(rows)
     })
     }  else {
       connection.query(`INSERT INTO M_Mentee (MenteeID, Fname, Lname, Email, State, Password, Position, Bio, IsMentor) VALUES (${makedID},'${req.body.Fname}', '${req.body.Lname}', '${req.body.Email}', 'n', '${req.body.Password}', 'n', 'n', 1)`, 
       function(err, rows) {
-        console.log(rows)
+        // console.log(rows)
       })
     } 
     res.redirect('/Login_Page')
@@ -158,10 +167,12 @@ app.post("/update_mentor", function(req, res) {
                        
 
   for (let i = 0; i<skills.length; i++) {
-    if (skillsChecked[i] === true) {
+    if (skillsChecked[i] === 'true') {
       console.log(skills[i])
       connection.query(`INSERT INTO M_HaveSkill
-                        VALUES ${user}, '${skills[i]}'`, function(err, rows) {   })
+                        VALUES ${user}, '${skills[i]}'`, function(err, rows) {
+                          console.log(rows)
+                        })
     }
   }
   // redirect back to mentor home page
@@ -212,10 +223,9 @@ app.post("/update_mentee", function(req, res) {
                         WHERE MenteeId = ${user}`)
 
   for (let i = 0; i<skills.length; i++) {
-    if (skillsChecked[i] === True) {
+    if (skillsChecked[i] = 'on') {
       connection.query(`INSERT INTO M_Desired_Skill
                         VALUES ${user}, ${skills[i]}`)
-      console.log(skillsChecked[i])
     }
   }
 
@@ -242,7 +252,8 @@ app.get("/mentee_profile/:id", function(req, res) {
 
   connection.query(`SELECT * FROM sprog20223.M_Mentee where MenteeId = ${menteeid}`, 
   function(err, rows) 
-  {console.log(rows)
+  {
+    // console.log(rows)
     res.render("Mentee_Profile.ejs",
     { firstName: rows[0].Fname,
       lastName:  rows[0].Lname,
