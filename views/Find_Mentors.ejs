@@ -34,9 +34,9 @@
             <div class="results">
 
                 <!-- Using samples for now -->
-                <ul>Bruce Banner</ul><br>
-                <ul>Tony Stark</ul><br>
-                <ul>Steve Rogers</ul><br>
+                <table id="results">
+
+                </table>
                 
             </div> <!--  End of div -->
 
@@ -52,9 +52,9 @@
         if (mentorsData.length != 0) { // if not mentors array not empty
     
             mentorsData.forEach(mentor => {    
-              menteeRequests.innerHTML += `
+              mentorResults.innerHTML += `
                 <tr>
-                    <td><a href="/mentee_profile/${mentee.MenteeId}"> ${mentee.Fname} ${mentee.Lname}</a> </td>
+                    <td><a href="/mentor_profile/${mentor.MentorId}"> ${mentor.Fname} ${mentor.Lname}</a> </td>
                     <td><form action="/request_mentorship/${mentor.MentorID}" method="POST"><button>Request Mentorship</button></form></td>
                 </tr>
               `
