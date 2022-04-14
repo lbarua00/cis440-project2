@@ -49,13 +49,13 @@
         mentorsData = JSON.parse(mentorsData)
         console.log(mentorsData);
         // Populate all Mentors in results box
-        if (mentorsData.length != 0) { // if not mentee array not empty
+        if (mentorsData.length != 0) { // if not mentors array not empty
     
             mentorsData.forEach(mentor => {    
               menteeRequests.innerHTML += `
                 <tr>
                     <td><a href="/mentee_profile/${mentee.MenteeId}"> ${mentee.Fname} ${mentee.Lname}</a> </td>
-                    <td><form action="/" method="POST"><button>Request Mentorship</button></form></td>
+                    <td><form action="/request_mentorship/${mentor.MentorID}" method="POST"><button>Request Mentorship</button></form></td>
                 </tr>
               `
             })

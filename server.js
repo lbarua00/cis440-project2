@@ -258,6 +258,11 @@ app.get("/find_mentors", function(req, res) {
   // add code to filter results
 })
 
+//REQUEST MENTORSHIP
+app.post("/request_mentorship/:id", function(req, res) {
+
+})
+
 // GET MENTEE PROFILE
 app.get("/mentee_profile/:id", function(req, res) {
   let menteeid = req.params.id
