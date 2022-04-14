@@ -47,13 +47,13 @@ SET FOREIGN_KEY_CHECKS=0
 SET FOREIGN_KEY_CHECKS=1
 */
 
+// MENTOR AND MENTEE HOME PAGES
 app.get('/', checkAuthenticated, (req, res) => {
   let IsMentor = req.user.IsMentor
   let MentorID = req.user.MentorID
   console.log('Check Mentor Type ',IsMentor);
-  if (IsMentor === 0) {
-    // connection.query(`SELECT * FROM M_Mentorship WHERE MenteeID = ${MentorID}`, function(err, rows) {
-     connection.query
+  if (IsMentor === 0) {  
+     connection.query // QUERY TO PASS MENTEE DATA TO MENTOR HOME PAGE
      (`
      SELECT * FROM M_Mentee m join M_Mentorship m_ship
 		  on m.MenteeID = m_ship.MenteeID
@@ -63,18 +63,29 @@ app.get('/', checkAuthenticated, (req, res) => {
 		  WHERE MentorID = ${MentorID}
 		)
      `, 
-    //  (`SELECT * FROM M_Mentee 
-    //     where MenteeId in ( 
-    //         SELECT MenteeID 
-    //           FROM M_Mentorship 
-    //           WHERE MentorID =  ${MentorID}
-    //           )`, 
      function(err, rows) {
       res.render('Mentor_Page.ejs', { name: req.user.Fname, mentee_data: rows }) // pass Mentor and Mentee info to the mentor page
       console.log('Mentorships table data:', rows)
       })
   } else {
-    res.render('Mentee_Page.ejs', { name: req.user.Fname }) 
+
+    connection.query // QUERY TO PASS MENTOR DATA TO MENTEE HOME PAGE
+    (`
+    SELECT * FROM M_Mentor m join M_Mentorship m_ship
+    on m.MentorID = m_ship.MentorID
+      where m.MentorId = ( 
+   SELECT MentorID 
+    FROM M_Mentorship 
+    WHERE MenteeID = ${MentorID}
+  ) and MenteeID = ${MentorID}
+    `, 
+    function(err, rows) {
+     res.render('Mentee_Page.ejs', { name: req.user.Fname, mentor_data: rows }) // pass Mentor and Mentee info to the mentor page
+     console.log('Mentorships table data:', rows)
+     })
+
+
+    // res.render('Mentee_Page.ejs', { name: req.user.Fname }) 
   }
 
 })
@@ -273,11 +284,34 @@ app.get("/mentee_profile/:id", function(req, res) {
   )})
 */
 
-// POST MENTEE PROFILE
-app.post("/mentee_profile", function(req, res) {
+// POST MENTOR PROFILE
+app.post("/mentor_profile", function(req, res) {
 
 
 })
+
+// GET MENTOR PROFILE
+app.get("/mentor_profile/:id", function(req, res) {
+  let mentorid = req.params.id
+
+  console.log("Mentee_Profile page loaded.")
+  console.log("Request Id from url:", mentorid );
+
+  connection.query(`SELECT * FROM sprog20223.M_Mentor where MentorID = ${mentorid}`, 
+  function(err, rows) 
+  {
+    console.log(rows)
+    res.render("Mentor_Profile.ejs"
+    ,
+    { firstName: rows[0].Fname,
+      lastName:  rows[0].Lname,
+      state:     rows[0].State,
+      bio:       rows[0].Bio 
+    }
+    )
+  })
+})
+
 
 
 // PASSPORT FUNCTIONS

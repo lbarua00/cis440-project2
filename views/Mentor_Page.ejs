@@ -65,7 +65,7 @@
     if (menteeData.length != 0) { // if not mentee array not empty
 
         menteeData.forEach(mentee => {
-        if (mentee.Accepted === 1) { // check if the mentee is a current mentee
+        if (mentee.Accepted === 1) { // check if the mentee is a current  mentor's mentee if so populate
           menteeRow.innerHTML += `<td><a href="/mentee_profile/${mentee.MenteeId}">${mentee.Fname}</a></td>`
         }  else if (mentee.Accepted == 0){ // check of mentee is pending if so populate page
           menteeRequests.innerHTML += `

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-</html>
+
 <head>
     <meta charset="utf-8">
     <link href="Mentee_Page.css" rel="stylesheet"> 
@@ -9,13 +9,12 @@
 <body>
     <div class="centerpage">
         <div class="menteePage">
-           <h1>Welcome (username)</h1>
+           <h1>Welcome <<%= name %> ></h1>
            <form method="POST" action="action-page.php">
                <!--Mentee Page-->
                <label id="myMentor">My Mentors:</label>
-               <ul>
-                   <ol>
-                   </ol>
+               <ul id="mentorList">
+                   
                </ul>
                <a href="/find_mentors">Find Mentors</a><br><br>
                <!-- <button type="mentor" name="mentor" id="mentor">Find Mentors</button><br><br> -->
@@ -29,4 +28,23 @@
         </div> 
             <!-- Log out button -->
     </div>
+    <script>
+        let mentorList = document.getElementById('mentorList')
+        let mentorData = '<%- JSON.stringify(mentor_data)%>';
+        mentorData = JSON.parse(mentorData)
+        // console.log(typeof (mentorData));
+        // Populate Mentors current Mentees in "My Mentees"
+        if (mentorData.length != 0) { // if mentor array is not empty
+            mentorData.forEach(mentor => {
+              mentorList.innerHTML += `<li><a href="/mentor_profile/${mentor.MentorID}">${mentor.Fname}</a></li>`
+            })
+        } else {
+            mentorList.innerHTML += `<td>You don't have any Mentors.</td>`
+        } 
+
+
+
+             
+    </script>
 </body>
+</html>

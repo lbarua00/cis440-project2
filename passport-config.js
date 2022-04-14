@@ -18,6 +18,8 @@ function initialize(passport) {
     })
   }))
   
+  // NOTE WHEN A MENTEE LOGS IN THEIR ID WILL BE STORED as MentorID AND NOT MenteeID
+
   passport.serializeUser((mentor, done) => {
     done(null, mentor.MentorID)
     console.log("serializeUser: ",mentor);

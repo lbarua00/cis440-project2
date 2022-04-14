@@ -4,7 +4,60 @@
 <head>
     <title>Profile</title>
     <meta charset="utf-8">
-    <link href="Mentor_Profile.css" rel="stylesheet">
+    <!-- <link href="Mentor_Profile.css" rel="stylesheet"> -->
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          background: linear-gradient(#ffefd5, #87ceeb) no-repeat;
+          font-family: "Kumbh Sans", sans-serif;
+        }
+
+        .centerPage {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .mentorProfilePage {
+          overflow: hidden;
+          width: 60%;
+          padding: 10px 50px;
+          background-color: rgb(255, 255, 255);
+          border-radius: 15px;
+          box-shadow: 3px 12px 28px -3px rgba(0, 0, 0, 0.45);
+        }
+
+        table {
+          border: 1px solid black;
+          padding: 10px;
+          margin: auto;
+          width: 100%
+        }
+
+        /* Style for the buttons */
+        input[type="submit"] {
+          padding: 15px;
+          margin: auto;
+          cursor: pointer;
+          text-transform: uppercase;
+          text-align: center;
+          border: none;
+          border-radius: 3px;
+          font-weight: 700;
+          font-size: 18px;
+          background-color: #87CEEB;
+        }
+
+        input[type="submit"]:hover {
+          box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
+        }
+
+        #bio {
+          width: 100%;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -13,10 +66,10 @@
         <div class="mentorProfilePage">
             
             <!-- This will display the Mentor's Name. Using sample for now -->
-            <h1><%=fname%> <%=lname%></h1>
+            <h1><%=firstName%> <%=lastName%></h1>
 
             <!-- This will display the Mentor's location. Unsure if hardcoding -->
-            <p><%=location%></p><br>
+            <p><%=state%></p><br>
 
             <h3><u>Skills</u></h3>
             
