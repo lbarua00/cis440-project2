@@ -71,8 +71,8 @@
           menteeRequests.innerHTML += `
           <tr>
                 <td><a href="/mentee_profile/${mentee.MenteeId}"> ${mentee.Fname} ${mentee.Lname}</a> </td>
-                <td><button>Accept</button></td>
-                <td><button>Deny</button></td>
+                <td><form action="/" method="POST"><button>Accept</button></form></td>
+                <td><form action="/" method="POST"><button> Deny </button></form></td>
             </tr>
           `
         }

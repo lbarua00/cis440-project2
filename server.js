@@ -247,9 +247,13 @@ app.post("/update_mentee", function(req, res) {
 // GET FIND MENTORS PAGE
 app.get("/find_mentors", function(req, res) {
   console.log("find mentors page loaded.")
-  res.render('find_mentors.ejs')
 
-  // add code to query db for all mentors
+  connection.query // QUERY TO PASS LIST OF ALL MENTORS TO PAGE
+    (`SELECT * FROM M_Mentor`, 
+    function(err, rows) {
+     res.render('Find_Mentors.ejs', { mentor_data: rows }) // pass Mentor and Mentee info to the mentor page
+     console.log('Mentor Data:', rows)
+     })
   // add code to populate page variables with query results
   // add code to filter results
 })

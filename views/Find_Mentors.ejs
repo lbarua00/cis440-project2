@@ -43,4 +43,23 @@
         </div> <!--  End of div -->
 
     </div> <!--  End of div -->
+    <script>
+        let mentorResults = document.getElementById('results')
+        let mentorsData = '<%- JSON.stringify(mentor_data)%>';
+        mentorsData = JSON.parse(mentorsData)
+        console.log(mentorsData);
+        // Populate all Mentors in results box
+        if (mentorsData.length != 0) { // if not mentee array not empty
+    
+            mentorsData.forEach(mentor => {    
+              menteeRequests.innerHTML += `
+                <tr>
+                    <td><a href="/mentee_profile/${mentee.MenteeId}"> ${mentee.Fname} ${mentee.Lname}</a> </td>
+                    <td><form action="/" method="POST"><button>Request Mentorship</button></form></td>
+                </tr>
+              `
+            })
+        }    
+        
+        </script>
 </body>
