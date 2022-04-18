@@ -1,16 +1,17 @@
 body {
   overflow: hidden;
-  margin: 0;
+  margin: 0px;
   padding: 0;
   background: linear-gradient(#ffefd5, #87ceeb) no-repeat;
   font-family: "Kumbh Sans", sans-serif;
 }
 
 .centerPage {
-  height: 90vh;
+  height: 100vh;
   margin: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .updateMenteeProfile {
@@ -31,6 +32,7 @@ table {
 }
 
 h1 {
+  orientation: top;
   text-align: center;
 }
 
