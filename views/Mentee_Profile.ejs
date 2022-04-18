@@ -60,6 +60,24 @@ input[type="submit"]:hover {
   width: 100%;
 }
 
+button {
+    padding: 8px;
+    margin: auto;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 12px;
+    background-color: #d62828;
+    color: white;
+  }
+  
+  button:hover {
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
+  }
+
     </style>
 </head>
 
@@ -110,7 +128,9 @@ input[type="submit"]:hover {
 
             <!-- Not clear if this section will be used yet -->
             <h3><u>Reviews</u></h3>
-
+            <form action="/logout?_method=DELETE" method="POST"><br>
+              <button type="submit">Log Out</button>
+          </form>
 
         </div>
     </div>

@@ -9,7 +9,7 @@
 <body>
     <div class="centerpage">
         <div class="menteePage">
-           <h1>Welcome <<%= name %> ></h1>
+           <h1>Welcome <%= name %> </h1>
            <form method="POST" action="action-page.php">
                <!--Mentee Page-->
                <label id="myMentor">My Mentors:</label>
@@ -21,10 +21,9 @@
                <!-- <button type="update" name="update" id="update">Update Profile</button><br><br> -->
                <a href="/update_mentee">Update Profile</a>
             </form>
-            <form action="/logout?_method=DELETE" method="POST">
+            <form action="/logout?_method=DELETE" method="POST"><br>
                 <button type="submit">Log Out</button>
-              
-              </form>
+            </form>
         </div> 
             <!-- Log out button -->
     </div>
@@ -40,11 +39,7 @@
             })
         } else {
             mentorList.innerHTML += `<td>You don't have any Mentors.</td>`
-        } 
-
-
-
-             
+        }    
     </script>
 </body>
 </html>
