@@ -1,6 +1,6 @@
 body {
-  margin: 30px 0px;
-  padding: px;
+  margin: 0px;
+  padding: 0;
   background: linear-gradient(#ffefd5, #87ceeb) no-repeat;
   font-family: "Kumbh Sans", sans-serif;
   overflow: hidden;
@@ -8,12 +8,13 @@ body {
 
 h1 {
   text-align: center;
+  orientation: top;
 }
 
 .centerPage {
-  height: 70vh;
-  margin: 50px 0px;
-  padding: 50px;
+  height: 100vh;
+  margin: 50px;
+/*   padding: 50px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,8 +22,8 @@ h1 {
 
 .mentorPage {
   overflow: hidden;
-  width: 60%;
-  padding: 10px 50px;
+/*   width: 60%; */
+  padding: 50px;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
   box-shadow: 3px 12px 28px -3px rgba(0, 0, 0, 0.45);
