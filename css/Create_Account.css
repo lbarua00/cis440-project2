@@ -10,6 +10,10 @@ h1 {
     orientation: top;
 }
 
+a {
+    text-decoration: none;
+}
+
 #create {
     padding: 15px 32%;
     cursor: pointer;
@@ -41,3 +45,40 @@ h1 {
 .txt {
     text-align: center;
 }
+
+input[type="text"],
+input[type="password"],
+input[type="button"],
+input[type="email"] {
+  display: block;
+  background-color: #d5d5f5;
+  color: black;
+  margin: 5px 0 5px 0;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  padding-left: 8px;
+}
+
+button {
+    /* padding: 15px 42%; */
+    width: 100%;
+    margin: 10px 0 20px 0px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 18px;
+    background: rgb(239, 239, 239);
+    color: black;
+  }
+
+   button:hover {
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
+  } 
+
+  .accountType {
+      margin-bottom: 20px;
+  }

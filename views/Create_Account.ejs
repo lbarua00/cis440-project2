@@ -13,7 +13,7 @@
       <h1>Register</h1>
       <form action="/Create_Account" method="POST">
                 <!-- Select Account Type -->
-        <div>
+        <div class="accountType">
           <input type="radio" id="mentorRad" name="account_type" value="mentor" checked>
           <label for="mentorRad" selected>Mentor</label>
           <input type="radio" id="menteeRad" name="account_type" value="mentee">
@@ -35,22 +35,10 @@
           <label for="Password">Password</label>
           <input type="password" id="Password" name="Password" required>
         </div>
-        <!-- These will be add later for the update profile page -->
-        <!-- <div>
-          <label for="State">State (Abbrivation)</label>
-          <input type="text" id="State" name="State" required>
-        </div>
-        <div>
-          <label for="Position">Position</label>
-          <input type="text" id="Position" name="Position" required>
-        </div>
-        <div>
-          <label for="Bio">Bio</label>
-          <input type="text" id="Bio" name="Bio" required>
-        </div> -->
+
         <button type="submit">Register</button>
       </form>
-      <a href="/Login_Page">Login</a>
+      <a class="loginBtn" href="/Login_Page">Login</a>
       </div> 
     </div>
   </body>
