@@ -1,48 +1,3 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(#ffefd5, #87ceeb) no-repeat;
-  font-family: "Kumbh Sans", sans-serif;
-}
-
-h1 {
-  text-align: center;
-}
-
-.centerPage {
-  height: 100vh;
-  margin-left: 3em;
-  margin-right: 3em;
-}
-
-.mentorPage {
-  overflow: hidden;
-  padding: 50px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 15px;
-  box-shadow: 3px 12px 28px -3px rgba(0, 0, 0, 0.45);
-}
-
-table {
-  border: 3px solid black;
-  margin: 30px 30px;
-  padding: 20px;
-  width: 50%;
-}
-
-button.logOut {
-  padding: 8px;
-  margin: auto;
-  cursor: pointer;
-  text-transform: uppercase;
-  text-align: center;
-  border: none;
-  border-radius: 3px;
-  font-weight: 700;
-  font-size: 12px;
-  background-color: #d62828;
-  color: white;
-} */
 body {
   margin: 0px;
   padding: 0;
@@ -55,6 +10,8 @@ h1 {
   text-align: center;
   orientation: top;
 }
+
+
 
 .centerPage {
   height: 100vh;
@@ -78,7 +35,7 @@ table {
   border: 3px solid black;
   /* padding: 10px; */
   padding: 20px;
-  width: 50%;
+  min-width: 100%;
 }
 
 input[type="submit"] {
