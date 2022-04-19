@@ -138,8 +138,16 @@ app.delete('/logout', (req, res) => {
 
 // GET UPDATE MENTOR PAGE
 app.get("/update_mentor", function(req, res) {
-  console.log("update mentor page loaded.")
-  res.render("Update_Mentor_Profile.ejs")
+  let user = req.user
+  let firstName = req.user.Fname
+  let lastName = req.user.Lname
+  let state = req.user.State
+  let bio = req.user.Bio
+  // console.log("test", Fname);
+  res.render('Update_Mentor_Profile.ejs', { firstName: firstName,
+    lastName: lastName,  // pass Mentor and Mentee info to the mentor page
+    state: state,  // pass Mentor and Mentee info to the mentor page
+    bio: bio })
 })
 
 
@@ -202,8 +210,16 @@ app.get("/mentee_page", function(req, res) {
 // GET UPDATE MENTEE PAGE
 app.get("/update_mentee", function(req, res) {
   console.log("update mentee page loaded.")
-  res.render("Update_Mentee_Profile.ejs")
-
+  let user = req.user
+  let firstName = req.user.Fname
+  let lastName = req.user.Lname
+  let state = req.user.State
+  let bio = req.user.Bio
+  // console.log("test", Fname);
+  res.render('Update_Mentee_Profile.ejs', { firstName: firstName,
+    lastName: lastName,  // pass Mentor and Mentee info to the mentor page
+    state: state,  // pass Mentor and Mentee info to the mentor page
+    bio: bio })
   // add code to query db for logged in mentee
   // add code to populate input boxes with current info
 })
@@ -241,7 +257,7 @@ app.post("/update_mentee", function(req, res) {
   // }
 
   // redirect back to mentee home page
-  res.redirect('/mentee_page')
+  res.redirect('/')
 })
 
 // GET FIND MENTORS PAGE

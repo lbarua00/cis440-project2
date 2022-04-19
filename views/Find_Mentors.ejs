@@ -17,6 +17,8 @@
             
             <div class="filterSkills">
                 <!-- Number of options might change -->
+                <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for mentors"><br><br> -->
+
                 <label for="mentors">Filter by skills: </label>
                 <select>
                     <option value="Choose One">Choose One</option>
@@ -50,7 +52,7 @@
         let mentorResults = document.getElementById('results')
         let mentorsData = '<%- JSON.stringify(mentor_data)%>';
         mentorsData = JSON.parse(mentorsData)
-        console.log(mentorsData);
+        console.log("This is Mentors data that got returned: ", mentorsData);
         // Populate all Mentors in results box
         if (mentorsData.length != 0) { // if not mentors array not empty
     
@@ -63,6 +65,5 @@
               `
             })
         }    
-        
         </script>
 </body>
