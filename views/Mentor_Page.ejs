@@ -70,9 +70,9 @@
         }  else if (mentee.Accepted == 0){ // check of mentee is pending if so populate page
           menteeRequests.innerHTML += `
           <tr>
-                <td><a href="/mentee_profile/${mentee.MenteeId}"> ${mentee.Fname} ${mentee.Lname}</a> </td>
-                <td><form action="/" method="POST"><button>Accept</button></form></td>
-                <td><form action="/" method="POST"><button> Deny </button></form></td>
+                <td><a href="/mentee_profile/${mentee.MenteeID}"> ${mentee.Fname} ${mentee.Lname}</a> </td>
+                <td><form action="/accept/${mentee.MenteeID}" method="POST"><button>Accept</button></form></td>
+                <td><form action="/deny/${mentee.MenteeID}" method="POST"><button> Deny </button></form></td>
             </tr>
           `
         }

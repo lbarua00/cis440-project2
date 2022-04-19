@@ -181,7 +181,7 @@ app.post("/update_mentor", function(req, res) {
     if (skillsChecked[i] === 'true') {
       console.log(skills[i])
       connection.query(`INSERT INTO M_HaveSkill
-                        VALUES ${user}, '${skills[i]}'`, function(err, rows) {
+                        VALUES ${user}, '${i}'`, function(err, rows) {
                           console.log(rows)
                         })
     }
@@ -233,12 +233,12 @@ app.post("/update_mentee", function(req, res) {
                       SET State = ${newlocation}, Bio = ${newbio}
                         WHERE MenteeId = ${user}`)
 
-  for (let i = 0; i<skills.length; i++) {
-    if (skillsChecked[i] = 'on') {
-      connection.query(`INSERT INTO M_Desired_Skill
-                        VALUES ${user}, ${skills[i]}`)
-    }
-  }
+  // for (let i = 0; i<skills.length; i++) {
+  //   if (skillsChecked[i] = 'on') {
+  //     connection.query(`INSERT INTO M_Desired_Skill
+  //                       VALUES ${user}, ${skills[i]}`)
+  // }
+  // }
 
   // redirect back to mentee home page
   res.redirect('/mentee_page')
@@ -254,13 +254,62 @@ app.get("/find_mentors", function(req, res) {
      res.render('Find_Mentors.ejs', { mentor_data: rows }) // pass Mentor and Mentee info to the mentor page
      console.log('Mentor Data:', rows)
      })
-  // add code to populate page variables with query results
-  // add code to filter results
+  
 })
+
 
 //REQUEST MENTORSHIP
 app.post("/request_mentorship/:id", function(req, res) {
+  let mentorid = req.params.id
 
+  console.log(`INSERT INTO M_Mentorship (MenteeID, MentorID, Accepted)
+  VALUES ('${req.session.passport.user}','${mentorid}','0')`)
+  console.log(`Mentee: Mentor requested: ${mentorid}`)
+  
+  connection.query(`INSERT INTO M_Mentorship (MenteeID, MentorID, Accepted)
+                    VALUES ('${menteeid}','${mentorid}', 0)`, 
+                    function(err, rows){
+                    }
+                  )
+
+  res.redirect('/')
+                    
+})
+
+//ACCEPT MENTORSHIP
+app.post("/accept/:id", function(req, res) {
+
+  let menteeid = req.params.id
+  console.log(`UPDATE M_Mentorship
+               SET Accepted = 1
+               WHERE MenteeID = ${menteeid} AND 
+                     MentorID = ${req.session.passport.user}`)
+
+  connection.query(`UPDATE M_Mentorship
+                    SET Accepted = 1
+                    WHERE MenteeID = ${menteeid} AND 
+                          MentorID = ${req.session.passport.user}`, 
+                  function(err, rows){})
+
+  res.redirect('/')
+})
+
+//DENY MENTORSHIP
+app.post("/deny/:id", function(req, res) {
+
+  let menteeid = req.params.id
+  console.log(`UPDATE M_Mentorship
+               SET Accepted = 2
+               WHERE MenteeID = ${menteeid} AND 
+                     MentorID = ${req.session.passport.user}`)
+
+  connection.query(`UPDATE M_Mentorship
+                    SET Accepted = 2
+                    WHERE MenteeID = ${menteeid} AND 
+                          MentorID = ${req.session.passport.user}`, 
+                  function(err, rows){})
+
+  res.redirect('/')
 })
 
 // GET MENTEE PROFILE
