@@ -14,12 +14,12 @@
     <div class="centerPage">
 
         <div class="findMentorsPage">
-            <a style="display: block;" href="/">Home</a><br>
+            <!-- <a style="display: block;" href="/">Home</a><br> -->
             <div class="filterSkills">
                 <!-- Number of options might change -->
                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for mentors"><br><br>
                 
-                <label for="mentors">Filter by skills: </label>
+                <!-- <label for="mentors">Filter by skills: </label>
                 <select>
                     <option value="Choose One">Choose One</option>
                     <option value="Accounting">Accounting</option>
@@ -29,7 +29,7 @@
                     <option value="HTML">HTML</option>
                     <option value="CSS">CSS</option>
                     <option value="Python">Python</option>
-                </select>
+                </select> -->
             </div><br> <!--  End of div -->
 
             <!-- This will contain the list of people who appear after using the filer -->
@@ -57,7 +57,13 @@
         if (mentorsData.length != 0) { // if not mentors array not empty
     
             mentorsData.forEach(mentor => {    
+            //   mentorResults.innerHTML += `
 
+            //         <li><a href="/mentor_profile/${mentor.MentorID}"> ${mentor.Fname} ${mentor.Lname}</a> </li>
+            //         <li><form action="/request_mentorship/${mentor.MentorID}" method="POST"><button>Request Mentorship</button></form></li>
+
+            //   `
+            //
             mentorResults.innerHTML += `
                 <li><a class="flex value="SQL" href="/mentor_profile/${mentor.MentorID}"> ${mentor.Fname} ${mentor.Lname}
                     <span style="display: none;">
