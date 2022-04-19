@@ -12,7 +12,7 @@ h1 {
 
 .centerPage {
   height: 100vh;
-  margin: 50px;
+  /* margin: 50px; */
   display: flex;
   justify-content: center;
   align-items: center;
