@@ -101,17 +101,8 @@ button {
             <!-- Using sample skills for now -->
             <!-- Should we have 4 skills to the max so we can "make it better" for mentees to refine their search? -->
             <table>
-                <tr>
-                    <td>Skill 1</td>
-                    <td>Skill 2</td>
-                </tr>
-                <tr>
-                    <td>Skill 3</td>
-                    <td>Skill 4</td>
-                </tr>
-                <tr>
-                    <td>Skill 5</td>
-                    <td>Skill 6</td>
+                <tr id="skills">
+
                 </tr>
             </table><br><br>
 
@@ -134,4 +125,28 @@ button {
 
         </div>
     </div>
+    <script>
+        let menteeSkills = document.getElementById('skills');
+          let skill_1 = "<%- (skills1) %>";
+          let skill_2 = "<%- (skills2) %>";
+          let skill_3 = "<%- (skills3) %>";
+          let skill_4 = "<%- (skills4) %>";
+          let skill_5 = "<%- (skills5) %>";
+          let skill_6 = "<%- (skills6) %>";
+          let skills = [skill_1, skill_2, skill_3, skill_4, skill_5, skill_6]
+          let result = skills.filter( element => {return element != 'undefined'
+          })
+          // result = JSON.parse(skill11)
+         console.log( (skills));
+
+        // Populate Mentors current Mentees in "My Mentees"
+        if (result.length != 0) { // if metnee array is not empty
+            result.forEach(mentee => {
+              
+              menteeSkills.innerHTML += `<td>${mentee}</td>`
+            })
+        } else {
+            menteeSkills.innerHTML += `<td>No Skills.</td>`
+        }    
+    </script>
 </body>
