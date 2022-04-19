@@ -138,8 +138,17 @@ app.delete('/logout', (req, res) => {
 
 // GET UPDATE MENTOR PAGE
 app.get("/update_mentor", function(req, res) {
-  console.log("update mentor page loaded.")
-  res.render("Update_Mentor_Profile.ejs")
+  let user = req.user
+  let firstName = req.user.Fname
+  let lastName = req.user.Lname
+  let state = req.user.State
+  let bio = req.user.Bio
+  
+  // console.log("test", Fname);
+  res.render('Update_Mentor_Profile.ejs', { firstName: firstName,
+    lastName: lastName,  // pass Mentor and Mentee info to the mentor page
+    state: state,  // pass Mentor and Mentee info to the mentor page
+    bio: bio })
 })
 
 
@@ -147,45 +156,75 @@ app.get("/update_mentor", function(req, res) {
 app.post("/update_mentor", function(req, res) {
   console.log("mentor profile updated.")
 
-  // add code to query db and save new input data
   let user = req.session.passport.user
   let newlocation   = req.body.location;
   let newyears      = req.body.yearsOfExperience
-  let newbio        = req.body.bio
-  
-  let skill1  = Boolean(req.body.skill1);
-  let skill2  = Boolean(req.body.skill2);
-  let skill3  = Boolean(req.body.skill3);
-  let skill4  = Boolean(req.body.skill4);
-  let skill5  = Boolean(req.body.skill5);
-  let skill6  = Boolean(req.body.skill6);
+  let newbio        = req.body.Bio
+  let skill1  = req.body.SQL
+  let skill2  = req.body.Python
+  let skill3  = req.body.Tableau
+  let skill4  = req.body.JavaScript
+  let skill5  = req.body.HTML
+  let skill6  = req.body.CSS
 
   const skills  = ['SQL','Python','Tableau','JavaScript','HTML','CSS']
-  const skillsChecked = [skill1, skill2, skill3, skill4, skill5, skill6]
+  // const skillsChecked = [skill1, skill2, skill3, skill4, skill5, skill6]
 
-  console.log(`${user}, ${newyears}, ${newlocation}, ${newbio}, ${skillsChecked}`)
-
-  // NEED TO ADD IF CHECK BASED ON IF USER IS MENTOR. USE req.user.IsMentor 
-  // 0 MEANS MENTOR
-  // 1 MEANS MENTEE
+  console.log(` THIS IS POST UPDATE MENTOR: ${user}, ${newyears}, ${newbio}, ${skill1}, ${skill2}, ${skill3}, ${skill4}`)
 
   connection.query(`UPDATE M_Mentor 
-                      SET State = '${newlocation}', Bio = '${newbio}'
-                        WHERE MentorId = ${user}`, function(err, rows) {
-                          console.log(rows)
-                        })
+	SET State = '${newlocation}',
+		Bio = '${newbio}',
+		Skill1 = '${skill1}',
+		Skill2 = '${skill2}',
+		Skill3 = '${skill3}',
+		Skill4 = '${skill4}',
+		Skill5 = '${skill5}',
+		Skill6 = '${skill6}'
+	WHERE MentorID = ${user}`
+                      , 
+    function(err, rows) {
+     console.log('Checking if worked:', rows)
+     })
+  // // add code to query db and save new input data
+  // let user = req.session.passport.user
+  // let newlocation   = req.body.location;
+  // let newyears      = req.body.yearsOfExperience
+  // let newbio        = req.body.bio
+  
+  // let skill1  = Boolean(req.body.skill1);
+  // let skill2  = Boolean(req.body.skill2);
+  // let skill3  = Boolean(req.body.skill3);
+  // let skill4  = Boolean(req.body.skill4);
+  // let skill5  = Boolean(req.body.skill5);
+  // let skill6  = Boolean(req.body.skill6);
+
+  // const skills  = ['SQL','Python','Tableau','JavaScript','HTML','CSS']
+  // const skillsChecked = [skill1, skill2, skill3, skill4, skill5, skill6]
+
+  // console.log(`${user}, ${newyears}, ${newlocation}, ${newbio}, ${skillsChecked}`)
+
+  // // NEED TO ADD IF CHECK BASED ON IF USER IS MENTOR. USE req.user.IsMentor 
+  // // 0 MEANS MENTOR
+  // // 1 MEANS MENTEE
+
+  // connection.query(`UPDATE M_Mentor 
+  //                     SET State = '${newlocation}', Bio = '${newbio}'
+  //                       WHERE MentorId = ${user}`, function(err, rows) {
+  //                         console.log(rows)
+  //                       })
 
                        
 
-  for (let i = 0; i<skills.length; i++) {
-    if (skillsChecked[i] === 'true') {
-      console.log(skills[i])
-      connection.query(`INSERT INTO M_HaveSkill
-                        VALUES ${user}, '${i}'`, function(err, rows) {
-                          console.log(rows)
-                        })
-    }
-  }
+  // for (let i = 0; i<skills.length; i++) {
+  //   if (skillsChecked[i] === 'true') {
+  //     console.log(skills[i])
+  //     connection.query(`INSERT INTO M_HaveSkill
+  //                       VALUES ${user}, '${i}'`, function(err, rows) {
+  //                         console.log(rows)
+  //                       })
+  //   }
+  // }
   // redirect back to mentor home page
   res.redirect('/')
 })
@@ -202,8 +241,16 @@ app.get("/mentee_page", function(req, res) {
 // GET UPDATE MENTEE PAGE
 app.get("/update_mentee", function(req, res) {
   console.log("update mentee page loaded.")
-  res.render("Update_Mentee_Profile.ejs")
-
+  let user = req.user
+  let firstName = req.user.Fname
+  let lastName = req.user.Lname
+  let state = req.user.State
+  let bio = req.user.Bio
+  // console.log("test", Fname);
+  res.render('Update_Mentee_Profile.ejs', { firstName: firstName,
+    lastName: lastName,  // pass Mentor and Mentee info to the mentor page
+    state: state,  // pass Mentor and Mentee info to the mentor page
+    bio: bio })
   // add code to query db for logged in mentee
   // add code to populate input boxes with current info
 })
@@ -217,31 +264,34 @@ app.post("/update_mentee", function(req, res) {
   let newlocation   = req.body.location;
   let newyears      = req.body.yearsOfExperience
   let newbio        = req.body.Bio
-  let skill1  = Boolean(req.body.skill1);
-  let skill2  = Boolean(req.body.skill2);
-  let skill3  = Boolean(req.body.skill3);
-  let skill4  = Boolean(req.body.skill4);
-  let skill5  = Boolean(req.body.skill5);
-  let skill6  = Boolean(req.body.skill6);
+  let skill1  = req.body.SQL
+  let skill2  = req.body.Python
+  let skill3  = req.body.Tableau
+  let skill4  = req.body.JavaScript
+  let skill5  = req.body.HTML
+  let skill6  = req.body.CSS
 
   const skills  = ['SQL','Python','Tableau','JavaScript','HTML','CSS']
-  const skillsChecked = [skill1, skill2, skill3, skill4, skill5, skill6]
+  // const skillsChecked = [skill1, skill2, skill3, skill4, skill5, skill6]
 
-  console.log(`${user}, ${newyears}, ${newbio}, ${skillsChecked}`)
-
+  console.log(` THIS IS POST UPDATE MENTEE: ${user}, ${newyears}, ${newbio}, ${skill1}, ${skill2}, ${skill3}, ${skill4}`)
+  console.log("This is the skills is",typeof(skill1));
   connection.query(`UPDATE M_Mentee 
-                      SET State = ${newlocation}, Bio = ${newbio}
-                        WHERE MenteeId = ${user}`)
-
-  // for (let i = 0; i<skills.length; i++) {
-  //   if (skillsChecked[i] = 'on') {
-  //     connection.query(`INSERT INTO M_Desired_Skill
-  //                       VALUES ${user}, ${skills[i]}`)
-  // }
-  // }
-
+	SET State = '${newlocation}',
+		Bio = '${newbio}',
+		Skill1 = '${skill1}',
+		Skill2 = '${skill2}',
+		Skill3 = '${skill3}',
+		Skill4 = '${skill4}',
+		Skill5 = '${skill5}',
+		Skill6 = '${skill6}'
+	WHERE MenteeId = ${user}`
+                      , 
+    function(err, rows) {
+     console.log('Checking if worked:', rows)
+     })
   // redirect back to mentee home page
-  res.redirect('/mentee_page')
+  res.redirect('/')
 })
 
 // GET FIND MENTORS PAGE
@@ -322,25 +372,20 @@ app.get("/mentee_profile/:id", function(req, res) {
   connection.query(`SELECT * FROM sprog20223.M_Mentee where MenteeId = ${menteeid}`, 
   function(err, rows) 
   {
-    // console.log(rows)
     res.render("Mentee_Profile.ejs",
     { firstName: rows[0].Fname,
       lastName:  rows[0].Lname,
       state:     rows[0].State,
-      bio:       rows[0].Bio 
+      bio:       rows[0].Bio ,
+      skills1: rows[0].Skill1,
+      skills2: rows[0].Skill2,
+      skills3: rows[0].Skill3,
+      skills4: rows[0].Skill4,
+      skills5: rows[0].Skill5,
+      skills6: rows[0].Skill6,
     })
   })
 })
-/*
-  Stephens code
-  currentUser = req.session.passport.user
-
-  connection.query(`
-  SELECT * FROM M_Mentee
-  where MenteeID = ${currentUser}`, function(err, rows) {
-  res.render('Mentee_Profile.ejs', { fname: req.user.Fname, lname: req.user.Lname, location: req.user.State, bio: req.user.Bio }
-  )})
-*/
 
 // POST MENTOR PROFILE
 app.post("/mentor_profile", function(req, res) {
@@ -350,23 +395,46 @@ app.post("/mentor_profile", function(req, res) {
 
 // GET MENTOR PROFILE
 app.get("/mentor_profile/:id", function(req, res) {
+  // let mentorid = req.params.id
+
+  // console.log("Mentee_Profile page loaded.")
+  // console.log("Request Id from url:", mentorid );
+
+  // connection.query(`SELECT * FROM sprog20223.M_Mentor where MentorID = ${mentorid}`, 
+  // function(err, rows) 
+  // {
+  //   console.log("GET MENTOR PROFILE", rows)
+
+  //   res.render("Mentor_Profile.ejs"
+  //   ,
+  //   { firstName: rows[0].Fname,
+  //     lastName:  rows[0].Lname,
+  //     state:     rows[0].State,
+  //     bio:       rows[0].Bio 
+
+  //   }
+  //   )
+  // })
   let mentorid = req.params.id
 
-  console.log("Mentee_Profile page loaded.")
+  console.log("Mentor_Profile page loaded.")
   console.log("Request Id from url:", mentorid );
 
   connection.query(`SELECT * FROM sprog20223.M_Mentor where MentorID = ${mentorid}`, 
   function(err, rows) 
   {
-    console.log(rows)
-    res.render("Mentor_Profile.ejs"
-    ,
+    res.render("Mentor_Profile.ejs",
     { firstName: rows[0].Fname,
       lastName:  rows[0].Lname,
       state:     rows[0].State,
-      bio:       rows[0].Bio 
-    }
-    )
+      bio:       rows[0].Bio,
+      skills1: rows[0].Skill1,
+      skills2: rows[0].Skill2,
+      skills3: rows[0].Skill3,
+      skills4: rows[0].Skill4,
+      skills5: rows[0].Skill5,
+      skills6: rows[0].Skill6,
+    })
   })
 })
 

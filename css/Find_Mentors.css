@@ -12,7 +12,7 @@ h1 {
 
 .centerPage {
   height: 100vh;
-  margin: 50px;
+  /* margin: 50px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,4 +32,13 @@ h1 {
 
 button:hover.logOut {
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
+}
+
+ul {
+  list-style: none;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
 }

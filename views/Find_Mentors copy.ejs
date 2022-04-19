@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Find Mentors</title>
+    <meta charset="utf-8">
+    <link href="Find_Mentors.css" rel="stylesheet">
+</head>
+
+<body>
+    
+    <h1>Find A Mentor</h1>
+
+    <div class="centerPage">
+
+        <div class="findMentorsPage">
+            <a style="display: block;" href="/">Home</a><br>
+            <div class="filterSkills">
+                <!-- Number of options might change -->
+                <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for mentors"><br><br> -->
+                
+                <label for="mentors">Filter by skills: </label>
+                <select>
+                    <option value="Choose One">Choose One</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Excel">Excel</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="Python">Python</option>
+                </select>
+            </div><br> <!--  End of div -->
+
+            <!-- This will contain the list of people who appear after using the filer -->
+            <div class="results">
+
+                <!-- Using samples for now -->
+                <table id="results">
+
+                </table>
+                
+            </div> <!--  End of div -->
+
+            <form action="/logout?_method=DELETE" method="POST"><br>
+                <button class="logOut" type="submit">Log Out</button>
+            </form>
+        </div> <!--  End of div -->
+
+    </div> <!--  End of div -->
+    <script>
+        let mentorResults = document.getElementById('results')
+        let mentorsData = '<%- JSON.stringify(mentor_data)%>';
+        mentorsData = JSON.parse(mentorsData)
+        console.log("This is Mentors data that got returned: ", mentorsData);
+        // Populate all Mentors in results box
+        if (mentorsData.length != 0) { // if not mentors array not empty
+    
+            mentorsData.forEach(mentor => {    
+              mentorResults.innerHTML += `
+                <tr>
+                    <td><a href="/mentor_profile/${mentor.MentorID}"> ${mentor.Fname} ${mentor.Lname}</a> </td>
+                    <td><form action="/request_mentorship/${mentor.MentorID}" method="POST"><button>Request Mentorship</button></form></td>
+                </tr>
+              `
+            })
+        }
+        
+        
+        </script>
+</body>

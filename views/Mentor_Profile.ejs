@@ -17,6 +17,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          height: 100vh;
         }
 
         .mentorProfilePage {
@@ -66,6 +67,7 @@
         <div class="mentorProfilePage">
             
             <!-- This will display the Mentor's Name. Using sample for now -->
+            <a href="/">Home</a>
             <h1><%=firstName%> <%=lastName%></h1>
 
             <!-- This will display the Mentor's location. Unsure if hardcoding -->
@@ -76,23 +78,14 @@
             <!-- Using sample skills for now -->
             <!-- Should we have 4 skills to the max so we can "make it better" for mentees to refine their search? -->
             <table>
-                <tr>
-                    <td>Skill 1</td>
-                    <td>Skill 2</td>
-                </tr>
-                <tr>
-                    <td>Skill 3</td>
-                    <td>Skill 4</td>
-                </tr>
-                <tr>
-                    <td>Skill 5</td>
-                    <td>Skill 6</td>
+                <tr id="skills">
+
                 </tr>
             </table><br><br>
 
             <h3><u>Bio</u></h3>
             <!-- Text box; need to be able to make it like a box -->
-            <textarea id="bio" name="bio" rows="10" cols="50"><%=bio%></textarea><br><br>
+            <textarea id="bio" name="Bio" rows="10" cols="50"><%= bio %></textarea><br><br>
 
             <!-- This should take you to the Review page -->
             <a href="Review_Page.html" target="_blank"><input type="submit" id="leaveReview" value="Leave Review"></a><br><br>
@@ -105,9 +98,29 @@
 
 
         </div>
-
-
-
-
     </div>
+    <script>
+      let mentorSkills = document.getElementById('skills');
+        let skill_1 = "<%- (skills1) %>";
+        let skill_2 = "<%- (skills2) %>";
+        let skill_3 = "<%- (skills3) %>";
+        let skill_4 = "<%- (skills4) %>";
+        let skill_5 = "<%- (skills5) %>";
+        let skill_6 = "<%- (skills6) %>";
+        let skills = [skill_1, skill_2, skill_3, skill_4, skill_5, skill_6]
+        let result = skills.filter( element => { return element != 'undefined'
+        })
+       console.log( (skills));
+       console.log( (result));
+
+      // Populate Mentors current Mentees in "My Mentees"
+      if (result.length != 0) { // if metnee array is not empty
+          result.forEach(menteeSkill => {
+            
+            mentorSkills.innerHTML += `<td>${menteeSkill}</td>`
+          })
+      } else {
+          mentorSkills.innerHTML += `<td>No Skills.</td>`
+      }    
+  </script>
 </body>

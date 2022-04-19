@@ -13,65 +13,46 @@
         <div class="updateMenteeProfile">
 
             <!-- This will display the Mentor's Name. Using sample for now -->
-            <h1>Bart Simpson</h1>
+            <a href="/">Home</a>
+            <h1><%=firstName%> <%=lastName%></h1>
 
-            <h3><u>Desired Skills</u></h3>
+            <h3><u>Skills</u></h3>
 
 
             <!-- Putting everything in a FORM tag since this will be constantly updating.-->
-            <form method="POST" action="/update_mentee">
+            <form method="POST" action="/update_mentor">
                 <!-- Table for Skills, still unsure about how many skills there will be in total -->
                 <div id="skillsTable">
                     <table>
                         <tr>
                             <td>
-                                <input type="checkbox" id="skill1">
+                                <input type="checkbox" id="skill1" name="SQL" value="SQL" >
                             </td>
-                            <td>Skill 1</td>
+                            <td>SQL</td>
                             <td>
-                                <input type="checkbox" id="skill2">
+                                <input type="checkbox" id="skill2" name="Python" value="Python">
                             </td>
-                            <td>Skill 2</td>
+                            <td>Python</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="checkbox" id="skill3">
+                                <input type="checkbox" id="skill3" name="Tableau" value="Tableau">
                             </td>
-                            <td>Skill 3</td>
+                            <td>Tableau</td>
                             <td>
-                                <input type="checkbox" id="skill4">
+                                <input type="checkbox" id="skill4" name="JavaScript" value="JavaScript">
                             </td>
-                            <td>Skill 4</td>
+                            <td>JavaScript</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="checkbox" id="skill5">
+                                <input type="checkbox" id="skill5" name="HTML" value="HTML">
                             </td>
-                            <td>Skill 5</td>
+                            <td>HTML</td>
                             <td>
-                                <input type="checkbox" id="skill6">
+                                <input type="checkbox" id="skill6" name="CSS" value="CSS"> 
                             </td>
-                            <td>Skill 6</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" id="skill7">
-                            </td>
-                            <td>Skill 7</td>
-                            <td>
-                                <input type="checkbox" id="skill8">
-                            </td>
-                            <td>Skill 8</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" id="skill9">
-                            </td>
-                            <td>Skill 9</td>
-                            <td>
-                                <input type="checkbox" id="skill10">
-                            </td>
-                            <td>Skill 10</td>
+                            <td>CSS</td>
                         </tr>
                     </table>
                 </div><br>

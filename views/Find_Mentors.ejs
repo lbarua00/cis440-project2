@@ -14,10 +14,12 @@
     <div class="centerPage">
 
         <div class="findMentorsPage">
-            
+            <a style="display: block;" href="/">Home</a><br>
             <div class="filterSkills">
                 <!-- Number of options might change -->
-                <label for="mentors">Filter by skills: </label>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for mentors"><br><br>
+                
+                <!-- <label for="mentors">Filter by skills: </label>
                 <select>
                     <option value="Choose One">Choose One</option>
                     <option value="Accounting">Accounting</option>
@@ -27,16 +29,16 @@
                     <option value="HTML">HTML</option>
                     <option value="CSS">CSS</option>
                     <option value="Python">Python</option>
-                </select>
+                </select> -->
             </div><br> <!--  End of div -->
 
             <!-- This will contain the list of people who appear after using the filer -->
             <div class="results">
 
                 <!-- Using samples for now -->
-                <table id="results">
+                <ul id="searchResults">
 
-                </table>
+                </ul>
                 
             </div> <!--  End of div -->
 
@@ -47,22 +49,56 @@
 
     </div> <!--  End of div -->
     <script>
-        let mentorResults = document.getElementById('results')
+        let mentorResults = document.getElementById('searchResults')
         let mentorsData = '<%- JSON.stringify(mentor_data)%>';
         mentorsData = JSON.parse(mentorsData)
-        console.log(mentorsData);
+        console.log("This is Mentors data that got returned: ", mentorsData);
         // Populate all Mentors in results box
         if (mentorsData.length != 0) { // if not mentors array not empty
     
             mentorsData.forEach(mentor => {    
-              mentorResults.innerHTML += `
-                <tr>
-                    <td><a href="/mentor_profile/${mentor.MentorID}"> ${mentor.Fname} ${mentor.Lname}</a> </td>
-                    <td><form action="/request_mentorship/${mentor.MentorID}" method="POST"><button>Request Mentorship</button></form></td>
-                </tr>
-              `
+            //   mentorResults.innerHTML += `
+
+            //         <li><a href="/mentor_profile/${mentor.MentorID}"> ${mentor.Fname} ${mentor.Lname}</a> </li>
+            //         <li><form action="/request_mentorship/${mentor.MentorID}" method="POST"><button>Request Mentorship</button></form></li>
+
+            //   `
+            //
+            mentorResults.innerHTML += `
+                <li><a class="flex value="SQL" href="/mentor_profile/${mentor.MentorID}"> ${mentor.Fname} ${mentor.Lname}
+                    <span style="display: none;">
+                        ${mentor.Skill1} 
+                        ${mentor.Skill2} 
+                        ${mentor.Skill3} 
+                        ${mentor.Skill4} 
+                        ${mentor.Skill5} 
+                        ${mentor.Skill6} 
+                    </span>
+                    <span ><form action="/request_mentorship/${mentor.MentorID}" method="POST"><button>Request Mentorship</button></form></span>
+                    </a></li>
+                
+                `
             })
-        }    
+        }
         
+        function myFunction() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("searchResults");
+        console.log("get ul", ul);
+        li = ul.getElementsByTagName("li");
+        console.log("get LI", li);
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            console.log('get anchor', a);
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
         </script>
 </body>
