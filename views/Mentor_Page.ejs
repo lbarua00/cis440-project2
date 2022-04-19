@@ -20,16 +20,7 @@
       <div id="pendingRequests">
         <h3><u>Pending Mentee Requests</u></h3>
         <table id="menteeRequests">
-            <!-- <tr>
-                <td>Bart Simpson</td>
-                <td><button>Accept</button></td>
-                <td><button>Deny</button></td>
-            </tr>
-            <tr>
-                <td>Hank Hill</td>
-                <td><button>Accept</button></td>
-                <td><button>Deny</button></td>
-            </tr> -->
+
         </table>
       </div><br><br>
       
@@ -66,7 +57,7 @@
 
         menteeData.forEach(mentee => {
         if (mentee.Accepted === 1) { // check if the mentee is a current  mentor's mentee if so populate
-          menteeRow.innerHTML += `<td><a href="/mentee_profile/${mentee.MenteeId}">${mentee.Fname}</a></td>`
+          menteeRow.innerHTML += `<td><a href="/mentee_profile/${mentee.MenteeId}">${mentee.Fname} ${mentee.Lname}</a></td>`
         }  else if (mentee.Accepted == 0){ // check of mentee is pending if so populate page
           menteeRequests.innerHTML += `
           <tr>

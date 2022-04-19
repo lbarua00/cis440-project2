@@ -35,7 +35,7 @@
         // Populate Mentors current Mentees in "My Mentees"
         if (mentorData.length != 0) { // if mentor array is not empty
             mentorData.forEach(mentor => {
-              mentorList.innerHTML += `<li><a href="/mentor_profile/${mentor.MentorID}">${mentor.Fname}</a></li>`
+              mentorList.innerHTML += `<li><a href="/mentor_profile/${mentor.MentorID}">${mentor.Fname} ${mentor.Lname}</a></li>`
             })
         } else {
             mentorList.innerHTML += `<td>You don't have any Mentors.</td>`
