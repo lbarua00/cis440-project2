@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   padding: 0;
   background: linear-gradient(#ffefd5, #87ceeb) no-repeat;
@@ -25,7 +25,6 @@ h1 {
 
 table {
   border: 3px solid black;
-  /* padding: 10px; */
   margin: 30px 30px;
   padding: 20px;
   width: 50%;
@@ -43,8 +42,68 @@ button.logOut {
   font-size: 12px;
   background-color: #d62828;
   color: white;
+} */
+body {
+  margin: 0px;
+  padding: 0;
+  background: linear-gradient(#ffefd5, #87ceeb) no-repeat;
+  font-family: "Kumbh Sans", sans-serif;
+  overflow: hidden;
 }
 
-button:hover.logOut {
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
+h1 {
+  text-align: center;
+  orientation: top;
+}
+
+.centerPage {
+  height: 100vh;
+  margin: 50px;
+/*   padding: 50px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mentorPage {
+  overflow: hidden;
+/*   width: 60%; */
+  padding: 50px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  box-shadow: 3px 12px 28px -3px rgba(0, 0, 0, 0.45);
+}
+
+table {
+  border: 3px solid black;
+  /* padding: 10px; */
+  padding: 20px;
+  width: 50%;
+}
+
+input[type="submit"] {
+  padding: 15px;
+  margin: auto;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: #87CEEB;
+}
+
+button.logOut {
+  padding: 8px;
+  margin: auto;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 12px;
+  background-color: #d62828;
+  color: white;
 }
