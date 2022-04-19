@@ -267,7 +267,7 @@ app.post("/request_mentorship/:id", function(req, res) {
   console.log(`Mentee: Mentor requested: ${mentorid}`)
   
   connection.query(`INSERT INTO M_Mentorship (MenteeID, MentorID, Accepted)
-                    VALUES ('${menteeid}','${mentorid}', 0)`, 
+                    VALUES ('${req.session.passport.user}','${mentorid}', 0)`, 
                     function(err, rows){
                     }
                   )
