@@ -57,7 +57,7 @@
             mentorsData.forEach(mentor => {    
               mentorResults.innerHTML += `
                 <tr>
-                    <td><a href="/mentor_profile/${mentor.MentorId}"> ${mentor.Fname} ${mentor.Lname}</a> </td>
+                    <td><a href="/mentor_profile/${mentor.MentorID}"> ${mentor.Fname} ${mentor.Lname}</a> </td>
                     <td><form action="/request_mentorship/${mentor.MentorID}" method="POST"><button>Request Mentorship</button></form></td>
                 </tr>
               `
