@@ -159,7 +159,7 @@ app.post("/update_mentor", function(req, res) {
   let user = req.session.passport.user
   let newlocation   = req.body.location;
   let newyears      = req.body.yearsOfExperience
-  let newbio        = req.body.Bio
+  let newbio        = req.body.bio
   let skill1  = req.body.SQL
   let skill2  = req.body.Python
   let skill3  = req.body.Tableau
@@ -263,7 +263,7 @@ app.post("/update_mentee", function(req, res) {
   let user = req.session.passport.user
   let newlocation   = req.body.location;
   let newyears      = req.body.yearsOfExperience
-  let newbio        = req.body.Bio
+  let newbio        = req.body.bio
   let skill1  = req.body.SQL
   let skill2  = req.body.Python
   let skill3  = req.body.Tableau
