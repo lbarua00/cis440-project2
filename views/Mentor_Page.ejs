@@ -47,10 +47,13 @@
   </div>
 
   <script>
+
     let menteeRow = document.getElementById('menteeRow')
     let menteeRequests = document.getElementById('menteeRequests')
     let menteeData = '<%- JSON.stringify(mentee_data)%>';
     menteeData = JSON.parse(menteeData)
+    // let fitlerMentee = menteeData.filter( element => {return element.Accepted == 0)}
+    // let checkPending = 0
     console.log(menteeData);
     // Populate Mentors current Mentees in "My Mentees"
     if (menteeData.length != 0) { // if not mentee array not empty
@@ -73,6 +76,16 @@
       menteeRow.innerHTML += `<td>You don't have any Mentees.</td>`
       menteeRequests.innerHTML += `<td>You don't have any Pending Mentee Requests.</td>`
     }
+
+    // if (condition) {
+      
+    // }
+
+    
+
+    
+
+ 
     </script>
 </body>
 </html>

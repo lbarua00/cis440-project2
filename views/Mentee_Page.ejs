@@ -17,6 +17,10 @@
                <ul id="mentorList">
                    
                </ul>
+               <label >Pending Mentors:</label>
+               <ul id="pendingMentors">
+                   
+               </ul>
                <a class="anchorBtn" href="/find_mentors">Find Mentors</a><br><br>
 
                <a class="anchorBtn" href="/update_mentee">Update Profile</a>
@@ -29,14 +33,20 @@
     </div>
     <script>
         let mentorList = document.getElementById('mentorList')
+        let pendingList = document.getElementById('pendingMentors')
         let mentorData = '<%- JSON.stringify(mentor_data)%>';
         mentorData = JSON.parse(mentorData)
-        // console.log(typeof (mentorData));
+        console.log( mentorData);
         // Populate Mentors current Mentees in "My Mentees"
         if (mentorData.length != 0) { // if mentor array is not empty
             mentorData.forEach(mentor => {
+            if (mentor.Accepted === 1) { // check if the mentee is a current  mentor's mentee if so populate
               mentorList.innerHTML += `<li><a href="/mentor_profile/${mentor.MentorID}">${mentor.Fname} ${mentor.Lname}</a></li>`
+            } else if (mentor.Accepted === 0) {
+                pendingMentors.innerHTML += `<li><a href="/mentor_profile/${mentor.MentorID}">${mentor.Fname} ${mentor.Lname}</a></li>`
+            }
             })
+        
         } else {
             mentorList.innerHTML += `<td>You don't have any Mentors.</td>`
         }    

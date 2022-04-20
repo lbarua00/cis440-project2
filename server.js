@@ -61,7 +61,7 @@ app.get('/', checkAuthenticated, (req, res) => {
 	   SELECT MenteeID 
 		  FROM M_Mentorship 
 		  WHERE MentorID = ${MentorID}
-		)
+		) and MentorID = ${MentorID}
      `, 
      function(err, rows) {
       res.render('Mentor_Page.ejs', { name: req.user.Fname, mentee_data: rows }) // pass Mentor and Mentee info to the mentor page
@@ -73,7 +73,7 @@ app.get('/', checkAuthenticated, (req, res) => {
     (`
     SELECT * FROM M_Mentor m join M_Mentorship m_ship
     on m.MentorID = m_ship.MentorID
-      where m.MentorId = ( 
+      where m.MentorId in ( 
    SELECT MentorID 
     FROM M_Mentorship 
     WHERE MenteeID = ${MentorID}
