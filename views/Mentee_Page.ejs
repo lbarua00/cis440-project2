@@ -15,7 +15,6 @@
                <!--Mentee Page-->
                <label id="myMentor">My Mentors:</label>
                <ul id="mentorList">
-                   
                </ul>
                <label >Pending Mentors:</label>
                <ul id="pendingMentors">
@@ -32,11 +31,16 @@
             <!-- Log out button -->
     </div>
     <script>
+    
+
         let mentorList = document.getElementById('mentorList')
         let pendingList = document.getElementById('pendingMentors')
         let mentorData = '<%- JSON.stringify(mentor_data)%>';
         mentorData = JSON.parse(mentorData)
-        console.log( mentorData);
+        let fitlerMentorCur = mentorData.filter( element => {return element.Accepted == 1})
+        let fitlerMentorReq = mentorData.filter( element => {return element.Accepted == 0})
+        // console.log("filters",fitlerMentorCur);
+        // console.log( mentorData);
         // Populate Mentors current Mentees in "My Mentees"
         if (mentorData.length != 0) { // if mentor array is not empty
             mentorData.forEach(mentor => {
@@ -46,10 +50,19 @@
                 pendingMentors.innerHTML += `<li><a href="/mentor_profile/${mentor.MentorID}">${mentor.Fname} ${mentor.Lname}</a></li>`
             }
             })
-        
         } else {
-            mentorList.innerHTML += `<td>You don't have any Mentors.</td>`
+            mentorList.innerHTML = `<li>You don't have any Mentors.</li>`
         }    
+
+        if (fitlerMentorCur.length === 0) {
+            mentorList.innerHTML = `<li>You don't have any Mentors.</li>`
+        }
+
+        if (fitlerMentorReq.length === 0) {
+            pendingMentors.innerHTML = `<li>You don't have any Mentors.</li>`
+        }
+
+
     </script>
 </body>
 </html>

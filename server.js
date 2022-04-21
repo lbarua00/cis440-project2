@@ -323,6 +323,7 @@ app.post("/request_mentorship/:id", function(req, res) {
                   )
 
   res.redirect('/')
+  // res.render('/')
                     
 })
 
