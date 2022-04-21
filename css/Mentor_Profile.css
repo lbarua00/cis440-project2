@@ -43,7 +43,7 @@ input[type="submit"] {
   border-radius: 3px;
   font-weight: 700;
   font-size: 18px;
-  background-color: #87CEEB;
+  background: rgb(239, 239, 239);
 }
 
 input[type="submit"]:hover {
@@ -53,3 +53,5 @@ input[type="submit"]:hover {
 #bio {
   width: 100%;
 }
+
+
