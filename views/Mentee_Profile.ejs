@@ -74,6 +74,10 @@ button {
     background-color: #d62828;
     color: white;
   }
+
+  .anchorBtn:hover {
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
+  }
   
   button:hover {
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
@@ -126,7 +130,9 @@ button {
             <!-- <textarea id="bio" name="bio" rows="10" cols="50"><%= bio%></textarea><br><br> -->
 
             <!-- This should take you to the Review page -->
-            <a href="Review_Page.html" target="_blank"><input type="submit" id="leaveReview" value="Leave Review"></a><br><br>
+            <!-- <a href="/review/${menteeid}"><input type="submit" id="leaveReview" value="Leave Review"></a> -->
+            <a class="anchorBtn" href="/review">Leave Review</a>
+            <br><br>
 
             <!-- This should trigger a request sent to the mentor's profile -->
             <input type="submit" id="requestMembership" value="Request Mentorship"><br>
