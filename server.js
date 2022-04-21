@@ -374,7 +374,8 @@ app.get("/mentee_profile/:id", function(req, res) {
   function(err, rows) 
   {
     res.render("Mentee_Profile.ejs",
-    { firstName: rows[0].Fname,
+    { menteeid: menteeid,
+      firstName: rows[0].Fname,
       lastName:  rows[0].Lname,
       state:     rows[0].State,
       bio:       rows[0].Bio ,
@@ -439,6 +440,14 @@ app.get("/mentor_profile/:id", function(req, res) {
   })
 })
 
+//REVIEW PAGE
+app.get("/review", function(req, res) {
+  // let review_target = req.params.id
+  // console.log(`Review Target ID: ${review_target}`)
+
+  res.render("Review_Page.ejs")
+
+})
 
 
 // PASSPORT FUNCTIONS
